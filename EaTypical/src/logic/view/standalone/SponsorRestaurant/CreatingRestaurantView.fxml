@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="myAnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.SponsorRestaurant.ControllerGuiCreatingRestaurant">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="700.0" pickOnBounds="true">
+         <image>
+            <Image url="@..\restaurant-mural-wallpaper_23-2148707022.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="30.0" layoutY="92.0" mnemonicParsing="false" onAction="#goToBackPage" text="Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="sponsorRestaurantButton" layoutX="440.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToSponsorRestaurant" prefHeight="31.0" prefWidth="230.0" text="Sponsor Restaurant">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="manageMenuButton" layoutX="190.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToManageMenu" prefHeight="31.0" prefWidth="230.0" text="Manage Menu">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="homeButton" layoutX="30.0" layoutY="47.0" mnemonicParsing="false" onAction="#goHomePage" prefHeight="31.0" prefWidth="140.0" text="Home">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="51.0" fitWidth="86.0" layoutX="584.0" layoutY="92.0" pickOnBounds="true">
+         <image>
+            <Image url="@..\utente.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomeUtenteLabel" layoutX="583.0" layoutY="143.0" text="nomeUtente" textFill="#eeeeee">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="84.0" layoutY="190.0" opacity="0.8" prefHeight="154.0" prefWidth="259.0" style="-fx-background-color: black;" text="Please, insert name, address and city of your restaurant:" textFill="#eeeeee" wrapText="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="doneButton" layoutX="297.0" layoutY="573.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="106.0" text="Done">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <Label layoutX="84.0" layoutY="399.0" opacity="0.8" prefHeight="119.0" prefWidth="259.0" style="-fx-background-color: black;" text="Click here to set the opening hours:" textFill="#eeeeee" wrapText="true">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="setOpeningHoursButton" layoutX="420.0" layoutY="433.0" mnemonicParsing="false" onAction="#goToOpeningHoursPage" prefHeight="51.0" prefWidth="176.0" text="Set Opening Hours">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="restNameTextBox" layoutX="420.0" layoutY="190.0" prefHeight="31.0" prefWidth="176.0" promptText="Restaurant name" />
+      <TextField fx:id="addrNameTextBox" layoutX="420.0" layoutY="252.0" prefHeight="31.0" prefWidth="176.0" promptText="Restaurant address" />
+      <ChoiceBox fx:id="choiceBox" layoutX="420.0" layoutY="313.0" prefHeight="31.0" prefWidth="176.0" />
+   </children>
+</AnchorPane>

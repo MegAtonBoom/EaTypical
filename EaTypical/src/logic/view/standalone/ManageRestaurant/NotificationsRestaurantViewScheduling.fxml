@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="myAnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.ManageMenuGuiController.ControllerGuiNotificationsView">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="700.0" pickOnBounds="true">
+         <image>
+            <Image url="@..\restaurant-mural-wallpaper_23-2148707022.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="homeButton" layoutX="30.0" layoutY="47.0" mnemonicParsing="false" onAction="#goHomePage" prefHeight="31.0" prefWidth="140.0" text="Home" />
+      <Button fx:id="manageMenuButton" layoutX="190.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToManageMenu" prefHeight="31.0" prefWidth="230.0" text="Manage Menu" />
+      <Button fx:id="sponsorRestaurantButton" layoutX="440.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToSponsorRestaurant" prefHeight="31.0" prefWidth="230.0" text="Sponsor Restaurant" />
+      <Button fx:id="backButton" layoutX="30.0" layoutY="92.0" mnemonicParsing="false" onAction="#goToBackPage" text="Back" />
+      <ImageView fitHeight="51.0" fitWidth="86.0" layoutX="584.0" layoutY="92.0" pickOnBounds="true">
+         <image>
+            <Image url="@..\utente.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomeUtente" layoutX="583.0" layoutY="154.0" text="nomeUtente" textFill="#eeeeee">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tabellaNotifiche" layoutX="50.0" layoutY="199.0" prefHeight="361.0" prefWidth="600.0">
+        <columns>
+          <TableColumn fx:id="turistaColonna" prefWidth="150.0" text="Turista" />
+          <TableColumn fx:id="ristoranteColonna" prefWidth="150.0" text="Ristorante" />
+            <TableColumn fx:id="dataColonna" prefWidth="150.0" text="Data" />
+            <TableColumn fx:id="momentoGiornataColonna" prefWidth="150.0" text="pranzo/cena" />
+        </columns>
+      </TableView>
+      <Button fx:id="continueButton" layoutX="250.0" layoutY="593.0" mnemonicParsing="false" onAction="#goToHome" prefHeight="60.0" prefWidth="200.0" text="Continue">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

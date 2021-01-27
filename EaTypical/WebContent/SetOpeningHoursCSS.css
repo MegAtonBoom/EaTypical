@@ -1,0 +1,201 @@
+@charset "ISO-8859-1";
+
+body {
+	background: url(sfondo_riadattato.jpg);
+	background-size: cover;
+}
+
+#fotoUtente {
+	width: 10.29%;
+	height: 7.29%;
+	position: absolute;
+	left: 85.43%;
+	top: 13.14%;
+}
+
+#home {
+	width: 20%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 4.71%;
+}
+
+#manageMenu {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 27.14%;
+	top: 4.71%;
+}
+
+#sponsorRestaurant {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 62.86%;
+	top: 4.71%;
+}
+
+#back {
+	width: 9.29%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 13.14%;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 85.43%;
+	top: 20.43%;
+	color: white;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}
+
+.checkLunch {
+	position: absolute;
+	left: 14.21%;
+}
+
+.labelLunch {
+	position: absolute;
+	left: 17.51%;
+	color: white;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}
+
+.checkDinner {
+	position: absolute;
+	left: 60%;
+}
+
+.labelDinner {
+	position: absolute;
+	left: 63.3%;
+	color: white;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#checkSunLunch {
+	top: 28.57%;
+}
+
+#labelSunLunch {
+	top: 27.87%;
+}
+
+#checkSunDinner {
+	top: 28.57%;
+}
+
+#labelSunDinner {
+	top: 27.87%;
+}
+
+#checkMonLunch {
+	top: 35.71%;
+}
+
+#labelMonLunch {
+	top: 35.01%;
+}
+
+#checkMonDinner {
+	top: 35.71%;
+}
+
+#labelMonDinner {
+	top: 35.01%;
+}
+
+#checkTueLunch {
+	top: 42.86%;
+}
+
+#labelTueLunch {
+	top: 42.16%;
+}
+
+#checkTueDinner {
+	top: 42.86%;
+}
+
+#labelTueDinner {
+	top: 42.16%;
+}
+
+#checkWedLunch {
+	top: 50%;
+}
+
+#labelWedLunch {
+	top: 49.3%;
+}
+
+#checkWedDinner {
+	top: 50%;
+}
+
+#labelWedDinner {
+	top: 49.3%;
+}
+
+#checkThuLunch {
+	top: 57.14%;
+}
+
+#labelThuLunch {
+	top: 56.44%;
+}
+
+#checkThuDinner {
+	top: 57.14%;
+}
+
+#labelThuDinner {
+	top: 56.44%;
+}
+
+#checkFriLunch {
+	top: 64.29%;
+}
+
+#labelFriLunch {
+	top: 63.59%;
+}
+
+#checkFriDinner {
+	top: 64.29%;
+}
+
+#labelFriDinner {
+	top: 63.59%;
+}
+
+#checkSatLunch {
+	top: 71.43%;
+}
+
+#labelSatLunch {
+	top: 70.73%;
+}
+
+#checkSatDinner {
+	top: 71.43%;
+}
+
+#labelSatDinner {
+	top: 70.73%;
+}
+
+#ok {
+	width: 15.14%;
+	height: 7.29%;
+	position: absolute;
+	left: 42.43%;
+	top: 82.14%;
+}

@@ -1,0 +1,191 @@
+@charset "ISO-8859-1";
+
+body {
+	background: url(sfondo_riadattato.jpg);
+	background-size: cover;
+}
+
+#euro {
+	width: 2.8%;
+	height: 5.6%;
+	position: absolute;
+	left: 9.06%;
+	top: 73.71%;
+}
+
+#fotoUtente {
+	width: 10.29%;
+	height: 7.29%;
+	position: absolute;
+	left: 85.43%;
+	top: 13.14%;
+}
+
+#home {
+	width: 20%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 4.71%;
+}
+
+#scheduleTrip {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 27.14%;
+	top: 4.71%;
+}
+
+#chooseRestaurant {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 62.86%;
+	top: 4.71%;
+}
+
+#back {
+	width: 9.29%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 13.14%;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 85.43%;
+	top: 20.43%;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#generate {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 33.57%;
+	top: 88.86%;
+}
+
+#scrollVoto {
+	width: 28.57%;
+	height: 5.6%;
+	position: absolute;
+	left: 59.71%;
+	top: 73.71%;
+}
+
+#budget {
+	width: 28.57%;
+	height: 5.6%;
+	position: absolute;
+	left: 11.86%;
+	top: 73.71%;
+}
+
+#checkboxVegan {
+	position: absolute;
+	left: 14.86%;
+	top: 62.71%;
+}
+
+#checkboxCeliac {
+	position: absolute;
+	left: 62.71%;
+	top: 62.71%;
+}
+
+.box-1 {
+	width: 43.57%;
+	height: 30%;
+	position: absolute;
+	left: 4.29%;
+	top: 27.14%;
+	border: 2px solid rgba(255,255,255,0.7);
+	background-color: rgba(0,0,0,0.7);
+}
+
+.box-2 {
+	width: 43.57%;
+	height: 30%;
+	position: absolute;
+	left: 52.14%;
+	top: 27.14%;
+	border: 2px solid rgba(255,255,255,0.7);
+	background-color: rgba(0,0,0,0.7);
+}
+
+.scrollAnni {
+	width: 49.19%;
+	height: 16.67%;
+	position: absolute;
+	left: 4.91%;
+	top: 76.2%;
+}
+
+.scrollMesi {
+	width: 49.19%;
+	height: 16.67%;
+	position: absolute;
+	left: 4.91%;
+	top: 52.4%;
+}
+
+.scrollGiorni {
+	width: 49.19%;
+	height: 16.67%;
+	position: absolute;
+	left: 4.91%;
+	top: 28.57%;
+}
+
+p {
+	color: white;
+	font-size: 20px;
+	position: absolute;
+	left: 4.91%;
+}
+
+.lunch {
+	position: absolute;
+	left: 68.85%;
+	top: 40.5%;
+}
+
+.dinner {
+	position: absolute;
+	left: 68.85%;
+	top: 64.3%;
+}
+
+label {
+	color: white;
+}
+
+#labelVegan {
+	position: absolute;
+	left: 18.15%;
+	top: 62%;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#labelCeliac {
+	position: absolute;
+	left: 66%;
+	top: 62%;
+	background-color: rgba(0,0,0,0.7);
+}
+
+.lunchLabel {
+	position: absolute;
+	left: 75%;
+	top: 37.2%;
+}
+
+.dinnerLabel {
+	position: absolute;
+	left: 75%;
+	top: 61%;
+}

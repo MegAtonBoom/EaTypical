@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="myAnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.login.RegisterGuiController">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="700.0" pickOnBounds="true">
+         <image>
+            <Image url="@../restaurant-mural-wallpaper_23-2148707022.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="homeButton" layoutX="30.0" layoutY="47.0" mnemonicParsing="false" onAction="#goHomePage" prefHeight="31.0" prefWidth="140.0" text="Home">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="scheduleTripButton" layoutX="190.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToScheduleTripPage" prefHeight="31.0" prefWidth="230.0" text="Schedule Trip">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="chooseRestaurantButton" layoutX="440.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToChooseRestaurantPage" prefHeight="31.0" prefWidth="230.0" text="Choose Restaurant">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="30.0" layoutY="92.0" mnemonicParsing="false" onAction="#goToBackPage" text="Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="51.0" fitWidth="86.0" layoutX="584.0" layoutY="92.0" pickOnBounds="true">
+         <image>
+            <Image url="@../utente.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="591.0" layoutY="150.0" text="NomeUtente" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="231.0" layoutY="177.0" prefHeight="30.0" prefWidth="63.0" text="Name" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="231.0" layoutY="240.0" prefHeight="30.0" prefWidth="86.0" text="Surname" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="231.0" layoutY="300.0" prefHeight="30.0" prefWidth="96.0" text="Username" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="226.0" layoutY="360.0" prefHeight="30.0" prefWidth="96.0" text="Password" textFill="WHITE">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <CheckBox fx:id="ownerCheckbox" layoutX="226.0" layoutY="424.0" mnemonicParsing="false" prefHeight="18.0" prefWidth="258.0" text="I am a restaurant owner" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </CheckBox>
+      <TextField fx:id="nameField" layoutX="336.0" layoutY="179.0" />
+      <TextField fx:id="surnameField" layoutX="336.0" layoutY="242.0" />
+      <TextField fx:id="usernameField" layoutX="336.0" layoutY="303.0" />
+      <Button fx:id="registerButton" layoutX="174.0" layoutY="508.0" mnemonicParsing="false" onAction="#RegisterMethod" text="Register">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="registerWithFbButton" layoutX="315.0" layoutY="508.0" mnemonicParsing="false" onAction="#RegisterMethod" prefHeight="39.0" prefWidth="275.0" text="Register with facebook">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="39.0" fitWidth="35.0" layoutX="555.0" layoutY="510.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@fblogo.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="passwordField" layoutX="336.0" layoutY="362.0" />
+      <Label fx:id="nameError" layoutX="335.0" layoutY="160.0" prefHeight="18.0" prefWidth="149.0" textFill="RED" visible="false" />
+      <Label fx:id="surnameError" layoutX="335.0" layoutY="221.0" prefHeight="18.0" prefWidth="162.0" textFill="RED" visible="false" />
+      <Label fx:id="usernameError" layoutX="335.0" layoutY="281.0" prefHeight="18.0" prefWidth="162.0" textFill="RED" visible="false" />
+      <Label fx:id="passwordError" layoutX="335.0" layoutY="341.0" prefHeight="18.0" prefWidth="162.0" textFill="RED" visible="false" />
+      <Label fx:id="newUsernameError" layoutX="280.0" layoutY="134.0" textFill="RED" />
+      <Label fx:id="genericError" layoutX="266.0" layoutY="109.0" textFill="RED" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,145 @@
+@charset "ISO-8859-1";
+
+#fotoUtente {
+	width: 12.29%;
+	height: 11.29%;
+	position: absolute;
+	left: 83.43%;
+	top: 13.14%;
+}
+
+#price {
+	top: 60%;
+	position:absolute;
+	left: 55%;
+}
+
+#area {
+	position:absolute;
+	left:13.29%;
+	top:50%;
+}
+
+#check {
+	position:absolute;
+	left:60%;
+	top: 44%;
+}
+
+#l2 {
+	font-size:40px;
+	color:white;
+}
+#l1 {
+	font-size:40px;
+	color:white;
+}
+
+#priceInput {
+	font-size: 25px;
+	
+	
+}
+
+#contR {
+	position:absolute;
+	left:60%;
+	top: 35%;
+}
+
+body {
+	background: url(restaurant-mural-wallpaper_23-2148707022.jpg);
+	background-size: cover;
+}
+
+#select {
+	font-size: 30px;
+}
+#containerSelect {
+	position: absolute;
+	left: 60%;
+	top: 26.29%;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 84.43%;
+	top: 25.43%;
+	color: white;
+	font-size: 11px;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#home {
+	width: 20%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 4.71%;
+}
+
+#fotoUtente {
+	width: 12.29%;
+	height: 11.29%;
+	position: absolute;
+	left: 83.43%;
+	top: 13.14%;
+}
+
+p {
+	font-size: 40px;
+	color:white;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 84.43%;
+	top: 25.43%;
+	color: white;
+	font-size: 11px;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#informazioni {
+	width: 32.86%;
+	height: 18.29;
+	position: absolute;
+	left: 13.29%;
+	top: 26.29%;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#continue {
+	position:absolute;
+	left: 47%;
+	top:85%;	
+	width:10em;
+	height:5em;
+}
+#manageMenu {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 27.14%;
+	top: 4.71%;
+}
+
+#sponsorRestaurant {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 62.86%;
+	top: 4.71%;
+}
+
+#sel {
+	font-size: 30px;
+}
+
+#back {
+	width: 9.29%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 13.14%;
+}

@@ -1,0 +1,121 @@
+@charset "ISO-8859-1";
+
+body {
+	background: url(sfondo_riadattato.jpg);
+	background-size: cover;
+}
+
+.button{
+	font-weight:bold;
+}
+
+#fotoUtente {
+	width: 10.29%;
+	height: 7.29%;
+	position: absolute;
+	left: 85.43%;
+	top: 13.14%;
+}
+
+#home {
+	width: 20%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 4.71%;
+}
+
+#scheduleTrip {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 27.14%;
+	top: 4.71%;
+}
+
+#chooseRestaurant {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 62.86%;
+	top: 4.71%;
+}
+
+#back {
+	width: 9.29%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 13.14%;
+	cursor: pointer;
+}
+#restName{
+	top:30%;
+	left:16%;
+	font-size:150%;
+	position:absolute;
+	color: white;
+}
+#addrName{
+	top:30%;
+	left:55%;
+	font-size:150%;
+	position:absolute;
+	color:white;
+}
+#checkboxes{
+	top: 22%;
+	left: 20%;	
+  	width: 50%;
+  	position:absolute;
+  	background-color:white;
+  	color: black;  	
+}
+
+#saveFavourite {
+	width:24.5%;
+	height: 6.43%;
+	left: 4.29%;
+	top: 80.4%;
+	position: absolute;
+}
+
+#readReviews {
+	width: 24.5%;
+	height: 6.63%;
+	left: 37.53%;
+	top: 80.4%;
+	position: absolute;
+}
+
+#writeReview {
+	width: 24.5%;
+	height: 6.63%;
+	left: 69.53%;
+	top: 80.4%;
+	position: absolute;
+}
+
+table, td, th{
+	background-color: white;
+	border: 1px solid black;
+    border-collapse: collapse;
+}
+
+#table1{
+	
+	width: 70%;
+	top:36.2%;
+	left:8.50%;
+	position: absolute;
+	cursor: pointer;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 85.43%;
+	top: 20.43%;
+	color: white;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}

@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="myAnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.ChooseRestaurant.ControllerGuiRestaurantView">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="700.0" pickOnBounds="true">
+         <image>
+            <Image url="@../restaurant-mural-wallpaper_23-2148707022.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="30.0" layoutY="92.0" mnemonicParsing="false" onAction="#goToBackPage" text="Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="chooseRestButton" layoutX="440.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToChooseRestaurantPage" prefHeight="31.0" prefWidth="230.0" text="Choose Restaurant">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="scheduleButton" layoutX="190.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToScheduleTripPage" prefHeight="31.0" prefWidth="230.0" text="Schedule Trip">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="homeButton" layoutX="30.0" layoutY="47.0" mnemonicParsing="false" onAction="#goHomePage" prefHeight="31.0" prefWidth="140.0" text="Home">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="51.0" fitWidth="86.0" layoutX="584.0" layoutY="92.0" pickOnBounds="true">
+         <image>
+            <Image url="@..\utente.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomeUtenteLabel" layoutX="591.0" layoutY="150.0" text="NomeUtente" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Button fx:id="saveFavButton" layoutX="30.0" layoutY="622.0" mnemonicParsing="false" onAction="#saveFavourites" prefHeight="31.0" prefWidth="200.0" text="Save Restaurant into Favourites">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="readReviewsButton" layoutX="250.0" layoutY="622.0" mnemonicParsing="false" onAction="#goToReadreviewsPage" prefHeight="31.0" prefWidth="200.0" text="Read Reviews">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="writeReviewButton" layoutX="470.0" layoutY="622.0" mnemonicParsing="false" onAction="#goToWriteReviewPage" prefHeight="31.0" prefWidth="200.0" text="Write Review">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <CheckBox fx:id="celiacCheck" layoutX="237.0" layoutY="211.0" mnemonicParsing="false" text="for celiacs" textFill="WHITE" />
+      <CheckBox fx:id="veganCheck" layoutX="420.0" layoutY="211.0" mnemonicParsing="false" text="for vegans" textFill="WHITE" />
+      <Label fx:id="mustLoginLabel" layoutX="236.0" layoutY="135.0" textFill="RED" visible="false" />
+      <Label fx:id="noSelection" layoutX="178.0" layoutY="581.0" textFill="RED" visible="false" />
+      <ChoiceBox fx:id="restChoice" layoutX="79.0" layoutY="337.0" prefHeight="26.0" prefWidth="150.0" />
+      <Button fx:id="restUpdateButton" layoutX="276.0" layoutY="264.0" mnemonicParsing="false" onAction="#updateRestaurants" text="update restaurants">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="inforUpdateButton" layoutX="301.0" layoutY="424.0" mnemonicParsing="false" onAction="#updateInfo" text="update info">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TextField fx:id="addressTextField" disable="true" layoutX="276.0" layoutY="337.0" prefHeight="26.0" prefWidth="249.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="voteTextField" disable="true" layoutX="548.0" layoutY="337.0" prefHeight="26.0" prefWidth="73.0">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </TextField>
+      <Label layoutX="278.0" layoutY="312.0" text="Restaurant Address" textFill="#fdfdfd">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="548.0" layoutY="312.0" text="Average Vote" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="genericError" layoutX="332.0" layoutY="179.0" textFill="RED" visible="false" />
+   </children>
+</AnchorPane>

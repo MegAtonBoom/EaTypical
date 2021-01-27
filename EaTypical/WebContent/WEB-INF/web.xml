@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  
+  <display-name>ISPWproject</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>confermaStep</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.ServletConfirmMessage</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>confermaStep</servlet-name>
+  	<url-pattern>/confirm</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>HomePage</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.ServletHomePageOwner</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>HomePage</servlet-name>
+  	<url-pattern>/HomePageOwner</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>abc</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.ServletRestaurantMenuView</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>abc</servlet-name>
+  	<url-pattern>/ManageMenu</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>cba</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.ServletDeleteDishView</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>cba</servlet-name>
+  	<url-pattern>/DeleteDish</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>cb</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.ServletAddDishView</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>cb</servlet-name>
+  	<url-pattern>/AddDish</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>a</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.SevletModifyView</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>a</servlet-name>
+  	<url-pattern>/ModifyDish</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>b</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.ServletAdviceView</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>b</servlet-name>
+  	<url-pattern>/AdviceDish</url-pattern>
+  </servlet-mapping>
+  
+<!--  <servlet>
+  	<servlet-name>ServletHomePageTourist</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.ServletHomePageTourist</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletHomePageTourist</servlet-name>
+  	<url-pattern>/HomePageTouristView</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ServletItalianCity</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.scheduletrip.ServletItalianCity</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletItalianCity</servlet-name>
+  	<url-pattern>/ItalianViewCity</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ServletTripSettings</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.scheduletrip.ServletTripSettings</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletTripSettings</servlet-name>
+  	<url-pattern>/TripSettingsView</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>ServletScheduling</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.scheduletrip.ServletScheduling</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletScheduling</servlet-name>
+  	<url-pattern>/SchedulingView</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>ServletCreatingRestaurant</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.sponsorrestaurant.ServletCreatingRestaurant</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletCreatingRestaurant</servlet-name>
+  	<url-pattern>/CreatingRestaurantView</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+  	<servlet-name>ServletItalianCitySponsor</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.sponsorrestaurant.ServletItalianCitySponsor</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletItalianCitySponsor</servlet-name>
+  	<url-pattern>/ItalianCitySponsorView</url-pattern>
+  </servlet-mapping>	-->
+  
+<!--      <servlet>
+  	<servlet-name>ServletItalianCity2</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.chooserestaurant.ServletItalianCity2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletItalianCity2</servlet-name>
+  	<url-pattern>/ItalianViewCity2</url-pattern>
+  </servlet-mapping>
+  
+       <servlet>
+  	<servlet-name>ServletRestaurantView</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.chooserestaurant.ServletRestaurantView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletRestaurantView</servlet-name>
+  	<url-pattern>/RestaurantView</url-pattern>
+  </servlet-mapping>
+  
+         <servlet>
+  	<servlet-name>ServletWriteReview</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.chooserestaurant.ServletWriteReview</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletWriteReview</servlet-name>
+  	<url-pattern>/WriteReviewView</url-pattern>
+  </servlet-mapping>
+  
+           <servlet>
+  	<servlet-name>ServletReadReviews</servlet-name>
+  	<servlet-class>logic.controller.guicontroller.Web.chooserestaurant.ServletReadReviews</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>ServletReadReviews</servlet-name>
+  	<url-pattern>/ReadReviewsView</url-pattern>
+  </servlet-mapping> -->
+  
+  
+</web-app>

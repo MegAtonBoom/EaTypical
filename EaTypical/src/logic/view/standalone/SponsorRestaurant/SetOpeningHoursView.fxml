@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="myAnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.SponsorRestaurant.ControllerGuiSetOpeningHours">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="700.0" pickOnBounds="true">
+         <image>
+            <Image url="@..\restaurant-mural-wallpaper_23-2148707022.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="30.0" layoutY="92.0" mnemonicParsing="false" onAction="#goToBackPage" text="Back">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="sponsorRestaurantButton" layoutX="440.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToSponsorRestaurant" prefHeight="31.0" prefWidth="230.0" text="Sponsor Restaurant">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="manageMenuButton" layoutX="190.0" layoutY="47.0" mnemonicParsing="false" onAction="#goToManageMenu" prefHeight="31.0" prefWidth="230.0" text="Manage Menu">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="homeButton" layoutX="30.0" layoutY="47.0" mnemonicParsing="false" onAction="#goHomePage" prefHeight="31.0" prefWidth="140.0" text="Home">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="51.0" fitWidth="86.0" layoutX="584.0" layoutY="92.0" pickOnBounds="true">
+         <image>
+            <Image url="@..\utente.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomeUtenteLabel" layoutX="583.0" layoutY="143.0" text="nomeUtente" textFill="#eeeeee">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="okButton" layoutX="297.0" layoutY="573.0" mnemonicParsing="false" onAction="#setOpeningHours" prefHeight="51.0" prefWidth="106.0" text="OK">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font></Button>
+      <CheckBox fx:id="sundayLunch" layoutX="100.0" layoutY="200.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Sunday lunch" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="sundayDinner" layoutX="420.0" layoutY="200.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Sunday dinner" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="saturdayLunch" layoutX="100.0" layoutY="500.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Saturday lunch" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="mondayLunch" layoutX="100.0" layoutY="250.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Monday lunch" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="tuesdayLunch" layoutX="100.0" layoutY="300.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Tuesday lunch" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="wednesdayLunch" layoutX="100.0" layoutY="350.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Wednesday lunch" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="thursdayLunch" layoutX="100.0" layoutY="400.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Thursday lunch" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="fridayLunch" layoutX="100.0" layoutY="450.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Friday lunch" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="mondayDinner" layoutX="420.0" layoutY="250.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Monday dinner" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="tuesdayDinner" layoutX="420.0" layoutY="300.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Tuesday dinner" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="wednesdayDinner" layoutX="420.0" layoutY="350.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Wednesday dinner" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="thursdayDinner" layoutX="420.0" layoutY="400.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Thursday dinner" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="fridayDinner" layoutX="420.0" layoutY="450.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Friday dinner" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+      <CheckBox fx:id="saturdayDinner" layoutX="420.0" layoutY="500.0" mnemonicParsing="false" opacity="0.9" style="-fx-background-color: black;" text="Saturday dinner" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </CheckBox>
+   </children>
+</AnchorPane>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="myAnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.ControllerGuiHomePageOwner">
+   <children>
+      <ImageView fitHeight="700.0" fitWidth="700.0" pickOnBounds="true">
+         <image>
+            <Image url="@restaurant-mural-wallpaper_23-2148707022.jpg" />
+         </image>
+      </ImageView>
+      <Button fx:id="backButton" layoutX="212.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToBackPage" prefHeight="76.0" prefWidth="280.0" text="Logout">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="sponsorRestaurantButton" layoutX="210.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToSponsorRestaurant" prefHeight="76.0" prefWidth="280.0" text="Sponsor Restaurant">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="manageMenuButton" layoutX="212.0" layoutY="185.0" mnemonicParsing="false" onAction="#goToManageMenu" prefHeight="76.0" prefWidth="280.0" text="Manage Menu">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="51.0" fitWidth="86.0" layoutX="584.0" layoutY="92.0" pickOnBounds="true">
+         <image>
+            <Image url="@utente.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="nomeUtenteLabel" layoutX="583.0" layoutY="143.0" text="nomeUtente" textFill="#eeeeee">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="labelBenvenuto" layoutX="335.0" layoutY="92.0" opacity="0.8" style="-fx-background-color: black;" text="Hi!" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="bottoneNotifiche" layoutX="212.0" layoutY="292.0" mnemonicParsing="false" onAction="#goToNotificationsView" prefHeight="76.0" prefWidth="280.0" text="See Notifications">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

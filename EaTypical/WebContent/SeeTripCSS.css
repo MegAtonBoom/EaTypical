@@ -1,0 +1,72 @@
+@charset "ISO-8859-1";
+
+body {
+	background: url(sfondo_riadattato.jpg);
+	background-size: cover;
+}
+
+#fotoUtente {
+	width: 10.29%;
+	height: 7.29%;
+	position: absolute;
+	left: 85.43%;
+	top: 13.14%;
+}
+
+#home {
+	width: 20%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 4.71%;
+}
+
+#scheduleTrip {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 27.14%;
+	top: 4.71%;
+}
+
+#chooseRestaurant {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 62.86%;
+	top: 4.71%;
+}
+
+#back {
+	width: 9.29%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 13.14%;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 85.43%;
+	top: 20.43%;
+	color: white;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}
+	
+#citta {
+	position: absolute;
+	left: 47.14%;
+	top: 18.57%;
+	color: green;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}
+
+#deleteScheduling {
+	width: 42.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 28.57%;
+	top: 85.71%;
+}

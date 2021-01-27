@@ -1,0 +1,208 @@
+@charset "ISO-8859-1";
+
+body {
+	background: url(sfondo_riadattato.jpg);
+	background-size: cover;
+}
+
+#fotoUtente {
+	width: 10.29%;
+	height: 7.29%;
+	position: absolute;
+	left: 85.43%;
+	top: 13.14%;
+}
+
+.box-2 {
+	width: 42.86%;
+	height: 59.14%;
+	position: absolute;
+	left: 52.86%;
+	top: 26.29%;
+}
+
+#fotoItalia {
+	width: 100%;
+	height: 100%;
+}
+
+.city {
+	width: 7.67%;
+	height: 5.28%;
+	position: absolute;
+}
+
+.city:hover {
+	cursor: pointer;
+}
+
+#AO_img {
+	left: 2.67%;
+	top: 9.66%;
+}
+
+#TO_img {
+	left: 8.67%;
+	top: 17.63%;
+}
+
+#GE_img {
+	left: 14%;
+	top: 22.46%;
+}
+
+#MI_img {
+	left: 19.67%;
+	top: 14.49%;
+}
+
+#TN_img {
+	left: 30.67%;
+	top: 6.52%;
+}
+
+#VE_img {
+	left: 39.33%;
+	top: 13.25%;
+}
+
+#TR_img {
+	left: 49%;
+	top: 7.73%;
+}
+
+#BO_img {
+	left: 35%;
+	top: 20.77%;
+}
+
+#FI_img {
+	left: 31.67%;
+	top: 29.23%;
+}
+
+#AN_img {
+	left: 50.67%;
+	top: 30.68%;
+}
+
+#PG_img {
+	left: 42%;
+	top: 35.27%;
+}
+
+#RM_img {
+	left: 44%;
+	top: 45.41%;
+}
+
+#AQ_img {
+	left: 52.33%;
+	top: 41.3%;
+}
+
+#CB_img {
+	left: 59.33%;
+	top: 46.62%;
+}
+
+#NA_img {
+	left: 61%;
+	top: 55.07%;
+}
+
+#PZ_img {
+	left: 73%;
+	top: 57.49%;
+}
+
+#BA_img {
+	left: 81%;
+	top: 51.21%;
+}
+
+#CZ_img {
+	left: 82%;
+	top: 68.84%;
+}
+
+#PA_img {
+	left: 52.33%;
+	top: 80.43%;
+}
+
+#CG_img {
+	left: 18.33%;
+	top: 70.77%;
+}
+
+#home {
+	width: 20%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 4.71%;
+}
+
+#scheduleTrip {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 27.14%;
+	top: 4.71%;
+}
+
+#chooseRestaurant {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 62.86%;
+	top: 4.71%;
+}
+
+#back {
+	width: 9.29%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 13.14%;
+}
+
+#continue {
+	width: 21.43%;
+	height: 6.43%;
+	position: absolute;
+	left: 15%;
+	top: 79%;
+}
+
+#scrollbar {
+	width: 21.43%;
+	height: 5%;
+	position: absolute;
+	left: 15%;
+	top: 46.86%;
+}
+
+.box-1 {
+	width: 32.86%;
+	height: 18.29%;
+	position: absolute;
+	left: 9.29%;
+	top: 26.29%;
+	background-color: rgba(0,0,0,0.7);
+}
+
+p {
+	color: white;
+	font-size: 18px;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 85.43%;
+	top: 20.43%;
+	color: white;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}
