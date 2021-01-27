@@ -14,7 +14,7 @@ public abstract class BaseGuiController {
 	
 	
 	 protected Session bs;
-	 public BaseGuiController(Session bs){
+	 protected BaseGuiController(Session bs){
 	 	this.bs = bs;
 	 }
 	

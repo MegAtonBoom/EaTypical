@@ -22,7 +22,7 @@ public class ReviewsDAO {
     private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
     private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
 
-    public static List<Review> findRestaurantReviews(String restaurant) throws Exception {
+    public static List<Review> findRestaurantReviews(String restaurant) throws ClassNotFoundException, SQLException   {
         // STEP 1: dichiarazioni
         Statement stmt = null;
         Connection conn = null;
@@ -72,12 +72,11 @@ public class ReviewsDAO {
         
         ///List<Review> listOfReviews = new ArrayList<Review>();
         Review rev;
-        try {
+        
             // STEP 2: loading dinamico del driver mysql
             Class.forName(DRIVER_CLASS_NAME);
 
             // STEP 3: apertura connessione
-            //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
             conn = DriverManager.getConnection(connectionString);
             // STEP 4: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -93,28 +92,14 @@ public class ReviewsDAO {
 	            
             
             // STEP 5.1: Clean-up dell'ambiente
-            rs.close();
-        	} finally {
-            // STEP 5.2: Clean-up dell'ambiente
-            try {
-                if (stmt != null)
-                    stmt.close();
-            } catch (SQLException se2) {
-            }
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
-        }
+            
 
         return rev;
     }
 
     
 
-    public static void insertReview(Review review) throws Exception {
+    public static void insertReview(Review review) throws ClassNotFoundException, SQLException  {
         Statement stmt = null;
         Connection conn = null;
         String username=review.getTourist().getUsername();
@@ -123,7 +108,7 @@ public class ReviewsDAO {
         int vote=review.getVote();
         
         
-        try {
+        
             Class.forName(DRIVER_CLASS_NAME);
             conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
 
@@ -136,13 +121,7 @@ public class ReviewsDAO {
             
             stmt.close();
 
-        } finally {
-            // STEP 5.2: Clean-up dell'ambiente        	
-                if (stmt != null)
-                    stmt.close();
-                if (conn != null)
-                    conn.close();
-        }
+         
     }
 
     

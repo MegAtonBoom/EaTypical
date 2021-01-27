@@ -12,16 +12,16 @@ public class ChooseRestaurantBean {
 	private List<Restaurant> bothRestaurants;
 	
 	
-	public ArrayList<ArrayList<String>> getAllRestaurants() 
+	public List<ArrayList<String>> getAllRestaurants() 
 	{
-		ArrayList<ArrayList<String>> result= new ArrayList<ArrayList<String>>();
-		ArrayList<String> restInfo= new ArrayList<String>();
+		List<ArrayList<String>> result= new ArrayList<>();
+		List<String> restInfo= new ArrayList<>();
 		for(Restaurant rest : this.allRestaurants)
 		{
 			restInfo.add(rest.getName());
 			restInfo.add(rest.getAddress());
 			restInfo.add(Double.toString(rest.getAvgVote()));
-			result.add(restInfo);
+			result.add((ArrayList<String>) restInfo);
 			restInfo= new ArrayList<String>();
 		}
 		return result;
@@ -34,16 +34,16 @@ public class ChooseRestaurantBean {
 	}
 	
 	
-	public ArrayList<ArrayList<String>> getCeliacRestaurants() 
+	public List<ArrayList<String>> getCeliacRestaurants() 
 	{
-		ArrayList<ArrayList<String>> result= new ArrayList<ArrayList<String>>();
-		ArrayList<String> restInfo= new ArrayList<String>();
+		List<ArrayList<String>> result= new ArrayList<>();
+		List<String> restInfo= new ArrayList<>();
 		for(Restaurant rest : this.celiacRestaurants)
 		{
 			restInfo.add(rest.getName());
 			restInfo.add(rest.getAddress());
 			restInfo.add(Double.toString(rest.getAvgVote()));
-			result.add(restInfo);
+			result.add((ArrayList<String>) restInfo);
 			restInfo= new ArrayList<String>();
 		}
 		return result;
@@ -56,16 +56,16 @@ public class ChooseRestaurantBean {
 	}
 	
 	
-	public ArrayList<ArrayList<String>> getVeganRestaurants() 
+	public List<ArrayList<String>> getVeganRestaurants() 
 	{
-		ArrayList<ArrayList<String>> result= new ArrayList<ArrayList<String>>();
-		ArrayList<String> restInfo= new ArrayList<String>();
+		List<ArrayList<String>> result= new ArrayList<>();
+		List<String> restInfo= new ArrayList<>();
 		for(Restaurant rest : this.veganRestaurants)
 		{
 			restInfo.add(rest.getName());
 			restInfo.add(rest.getAddress());
 			restInfo.add(Double.toString(rest.getAvgVote()));
-			result.add(restInfo);
+			result.add((ArrayList<String>) restInfo);
 			restInfo= new ArrayList<String>();
 		}
 		return result;
@@ -78,16 +78,16 @@ public class ChooseRestaurantBean {
 	}
 	
 	
-	public ArrayList<ArrayList<String>> getBothRestaurants() 
+	public List<ArrayList<String>> getBothRestaurants() 
 	{
-		ArrayList<ArrayList<String>> result= new ArrayList<ArrayList<String>>();
-		ArrayList<String> restInfo= new ArrayList<String>();
+		List<ArrayList<String>> result= new ArrayList<>();
+		List<String> restInfo= new ArrayList<>();
 		for(Restaurant rest : this.bothRestaurants)
 		{
 			restInfo.add(rest.getName());
 			restInfo.add(rest.getAddress());
 			restInfo.add(Double.toString(rest.getAvgVote()));
-			result.add(restInfo);
+			result.add((ArrayList<String>) restInfo);
 			restInfo= new ArrayList<String>();
 		}
 		return result;

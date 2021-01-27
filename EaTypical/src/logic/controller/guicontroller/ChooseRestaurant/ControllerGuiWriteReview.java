@@ -19,6 +19,7 @@ import logic.controller.applicationcontroller.WriteReview;
 import logic.controller.guicontroller.UserBaseGuiController;
 import logic.engineeringclasses.bean.chooserestaurant.BeanNewReview;
 import logic.engineeringclasses.exceptions.EmptyReviewFieldException;
+import logic.engineeringclasses.exceptions.GenericException;
 import logic.engineeringclasses.others.Session;
 public class ControllerGuiWriteReview extends UserBaseGuiController {
 
@@ -82,9 +83,12 @@ public class ControllerGuiWriteReview extends UserBaseGuiController {
 			this.emptyText.setText(e.getMessage());
 			this.emptyText.setVisible(true);
 		} 
-    	catch (Exception e) 
+    	catch (GenericException e) 
     	{
-			this.genericError.setText("Error, please try again later");
+			this.genericError.setText(e.getMessage());
+			this.genericError.setVisible(true);
+		} catch (Exception e) {
+			this.genericError.setText(e.getMessage());
 			this.genericError.setVisible(true);
 		}
     

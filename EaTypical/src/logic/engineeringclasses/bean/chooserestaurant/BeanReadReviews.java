@@ -14,9 +14,9 @@ public class BeanReadReviews {
 		this.reviews=reviews;
 	}
 	
-	public ArrayList<ArrayList<String>> getReviews() {
-		ArrayList<ArrayList<String>> reviews=new ArrayList<ArrayList<String>>();
-		ArrayList<String> singleReview= new ArrayList<String>();
+	public List<ArrayList<String>> getReviews() {
+		List<ArrayList<String>> stringReviews=new ArrayList<>();
+		ArrayList<String> singleReview= new ArrayList<>();
 		String username;
 		String content;
 		String vote;
@@ -28,10 +28,10 @@ public class BeanReadReviews {
 			singleReview.add(username);
 			singleReview.add(content);
 			singleReview.add(vote);
-			reviews.add(singleReview);
-			singleReview=new ArrayList<String>();
+			stringReviews.add(singleReview);
+			singleReview=new ArrayList<>();
 		}
-		return reviews;
+		return stringReviews;
 	}
 	
 	public void setReviews(List<Review> reviews) {

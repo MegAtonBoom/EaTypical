@@ -9,6 +9,7 @@ import logic.engineeringclasses.bean.login.BeanUser;
 import logic.engineeringclasses.dao.OwnerDAO;
 import logic.engineeringclasses.dao.TouristDAO;
 import logic.engineeringclasses.exceptions.AlreadyInUseUsernameException;
+import logic.engineeringclasses.exceptions.GenericException;
 import logic.engineeringclasses.exceptions.LoginDBException;
 import logic.engineeringclasses.exceptions.WrongUsernameOrPasswordException;
 import logic.engineeringclasses.factory.UserFactory;
@@ -18,7 +19,7 @@ public class Login {
 	
 	
 	
-	public User loginMethod(BeanUser loggingUser) throws  Exception
+	public User loginMethod(BeanUser loggingUser) throws  LoginDBException,SQLException,Exception
 	{		
 		User user;
 		
@@ -27,7 +28,6 @@ public class Login {
 			if(loggingUser.isOwner())
 			{
 				user=OwnerDAO.selectOwner(loggingUser.getUsername(),loggingUser.getPassword());
-				System.out.println("Dragon Ball");
 			}
 			else
 			{
@@ -40,15 +40,12 @@ public class Login {
 		}
 		catch(SQLException e)				//generic exception to handle that may occour if there is a bug or some not planned interaction
 		{
-			e.printStackTrace();
 			throw new SQLException("Please try again!");
-			//throw new Exception();
-			//e.printStackTrace();
 		}
 		return user;
 	}
 	
-	public void registerMethod(BeanUser loggingUser) throws Exception
+	public void registerMethod(BeanUser loggingUser) throws GenericException, AlreadyInUseUsernameException
 	{
 		String name=loggingUser.getName();
 		String surname=loggingUser.getSurname();
@@ -72,7 +69,7 @@ public class Login {
 		}
 		catch(Exception e)								//generic exception to handle that may occour in caso of there's a bug or some not planned interaction
 		{
-			throw new Exception("Please try again!");
+			throw new GenericException("Please try again!");
 		}
 	}
 

@@ -36,11 +36,10 @@ public class BeanNewReview {
 
 	public Review getReview()
 	{
-		int vote=Integer.parseInt(this.vote);	
+		int intVote=Integer.parseInt(this.vote);	
 		Tourist tourist=new Tourist(null,null,username,null,null,null);
-		Restaurant restaurant=new Restaurant(this.restaurant,null,null,0);
-		Review review=new Review(this.content,tourist,vote,restaurant);
-		return review;
+		Restaurant finalRestaurant=new Restaurant(this.restaurant,null,null,0);
+		return new Review(this.content,tourist,intVote,finalRestaurant);
 	}
 	
 	

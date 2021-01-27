@@ -21,6 +21,7 @@ public class TouristDAO {
 	    private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
 	    private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
+	    private TouristDAO() {}
 	    public static User selectTourist(String user, String pw) throws Exception {
 	        Statement stmt = null;
 	        Connection conn = null;	 

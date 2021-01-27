@@ -18,7 +18,7 @@ public abstract class UserBaseGuiController extends BaseGuiController {
 	protected String chooseRestPage = "/logic/view/standalone/ChooseRestaurant/ItalianViewCity.fxml";
 	protected String scheduleTripPage = "/logic/view/standalone/ScheduleTrip/ItalianViewCity.fxml";
 	
-	public UserBaseGuiController(Session bs) {
+	protected UserBaseGuiController(Session bs) {
 		super(bs);
 	}
 	

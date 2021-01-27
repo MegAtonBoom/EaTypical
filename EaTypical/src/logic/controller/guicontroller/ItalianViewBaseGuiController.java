@@ -12,7 +12,7 @@ import logic.engineeringclasses.others.Session;
 public abstract class ItalianViewBaseGuiController extends UserBaseGuiController {
 	protected ObservableList<String> list=FXCollections.observableArrayList();
 	
-	public ItalianViewBaseGuiController(Session bs) {
+	protected ItalianViewBaseGuiController(Session bs) {
 		super(bs);
 	}
 	

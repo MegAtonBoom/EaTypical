@@ -6,6 +6,7 @@ package logic.controller.guicontroller.ChooseRestaurant;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -17,8 +18,7 @@ import logic.engineeringclasses.others.Session;
 public class ControllerGuiReadReviews extends UserBaseGuiController{
 	
 	private String restaurant;
-	private ArrayList<ArrayList<String>> reviews;
-	String error="Error. Please try to reaload.";
+	private List<ArrayList<String>> reviews;
 	
 	public ControllerGuiReadReviews(String restaurant, Session bs) 
 	{
@@ -26,9 +26,9 @@ public class ControllerGuiReadReviews extends UserBaseGuiController{
 		this.restaurant=restaurant;						
 	}
 	
-	private void writeError()
+	private void writeError(String message)
 	{
-		this.reviewArea.setText(error);
+		this.reviewArea.setText(message);
 	}
 	
 	private void writeReviews()
@@ -36,13 +36,17 @@ public class ControllerGuiReadReviews extends UserBaseGuiController{
 		String username;
 		String content;
 		String vote;
+		String userInfo;
+		String contentRow;
 		for(ArrayList<String> review: this.reviews)
 		{
 			username=review.get(0);
 			vote=review.get(2);
 			content=review.get(1);
-			this.reviewArea.appendText("User: "+username+"	vote: "+vote+"\n\n" );
-			this.reviewArea.appendText("That user said: "+content+"\n\n\n");
+			userInfo="User" + username + "  vote: " + vote + "\n \n";
+			contentRow="This user said: "+content+"\n \n \n";
+			this.reviewArea.appendText(userInfo);
+			this.reviewArea.appendText(contentRow);
 		}
 	}
 
@@ -96,7 +100,7 @@ public class ControllerGuiReadReviews extends UserBaseGuiController{
 		}
 		catch(Exception e)
 		{
-			writeError();
+			writeError(e.getMessage());
 		}	
 
     }

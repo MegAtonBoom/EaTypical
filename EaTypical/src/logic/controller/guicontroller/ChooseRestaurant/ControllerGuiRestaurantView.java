@@ -26,10 +26,10 @@ import logic.engineeringclasses.dao.FavouriteRestDAO;
 import logic.engineeringclasses.others.Session;
 public class ControllerGuiRestaurantView extends UserBaseGuiController{
 
-	private ArrayList<ArrayList<String>> allRestaurants;
-	private ArrayList<ArrayList<String>> celiacRestaurants;
-	private ArrayList<ArrayList<String>> veganRestaurants;
-	private ArrayList<ArrayList<String>> bothRestaurants;
+	private List<ArrayList<String>> allRestaurants;
+	private List<ArrayList<String>> celiacRestaurants;
+	private List<ArrayList<String>> veganRestaurants;
+	private List<ArrayList<String>> bothRestaurants;
 	private ObservableList<String> allRestaurantNames=FXCollections.observableArrayList();
 	private ObservableList<String> veganRestaurantNames=FXCollections.observableArrayList();
 	private ObservableList<String> celiacRestaurantNames=FXCollections.observableArrayList();
@@ -129,7 +129,6 @@ public class ControllerGuiRestaurantView extends UserBaseGuiController{
     	}
     	else if((!restChosen  &&  isLogged()))
     	{
-	    	System.out.print("WritereviewPage\n");
 	    	String restaurant = restChoice.getSelectionModel().getSelectedItem();
 	    	FXMLLoader loader=new FXMLLoader(getClass().getResource(this.writeReviewPage));
 			loader.setControllerFactory(c -> new ControllerGuiWriteReview(restaurant, this.bs));
@@ -146,7 +145,6 @@ public class ControllerGuiRestaurantView extends UserBaseGuiController{
     
     @FXML
     void saveFavourites() {			//TO DO
-    	System.out.print("saveFav");
     	boolean restChosen=restChoice.getSelectionModel().isEmpty();
     	try
     	{

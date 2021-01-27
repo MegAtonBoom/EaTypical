@@ -83,19 +83,17 @@ public class LoginGuiController extends UserBaseGuiController {
 	    	bu.setOwner(isOwner);
 	    	bu.setPassword(pw);
 	    	Login loginAppContr= new Login();
-	    	System.out.println("Dragon Ball");
 	    	loggedUser=loginAppContr.loginMethod(bu);		//try to login
 	    	//   call the homepage and pass the user	    	
 	      	this.bs.setUser(loggedUser);
-	      	System.out.println(loggedUser.getUsername());
 	      	if(isOwner) {
 	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageOwnerView.fxml"));
-	        	loader.setControllerFactory(c -> {return new ControllerGuiHomePageOwner(this.bs);});
+	        	loader.setControllerFactory(c ->  new ControllerGuiHomePageOwner(this.bs));
 	        	Parent rootParent = loader.load();
 	        	myAnchorPane.getChildren().setAll(rootParent);
 	    	}else {
 	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageTouristView.fxml"));
-	        	loader.setControllerFactory(c -> {return new ControllerGuiHomePageTourist(this.bs);});
+	        	loader.setControllerFactory(c ->  new ControllerGuiHomePageTourist(this.bs));
 	        	Parent rootParent = loader.load();
 	        	myAnchorPane.getChildren().setAll(rootParent);
 	    	}

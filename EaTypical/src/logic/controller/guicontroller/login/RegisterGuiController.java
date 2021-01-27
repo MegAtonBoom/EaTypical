@@ -34,7 +34,6 @@ public class RegisterGuiController extends UserBaseGuiController {
 	private String passwordErrorMessage="The password can't be empty!";
 	private String nameErrorMessage="The name can't be empty!";
 	private String surnameErrorMessage="The surname can't be empty!";
-	private String genericErrorMessage="Please try again!";
 
 	@FXML
 	private ResourceBundle resources;
@@ -87,7 +86,7 @@ public class RegisterGuiController extends UserBaseGuiController {
 
 
     @FXML
-    void RegisterMethod(ActionEvent event) {
+    void registerMethod(ActionEvent event) {
     		try
     		{
 	    		String username=this.usernameField.getText();
@@ -116,12 +115,12 @@ public class RegisterGuiController extends UserBaseGuiController {
 	    		this.bs.setUser(user);
 	    		if(isOwner) {
 		    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageOwnerView.fxml"));
-		        	loader.setControllerFactory(c -> {return new ControllerGuiHomePageOwner(this.bs);});
+		        	loader.setControllerFactory(c -> new ControllerGuiHomePageOwner(this.bs));
 		        	Parent rootParent = loader.load();
 		        	myAnchorPane.getChildren().setAll(rootParent);
 		    	}else {
 		    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageTouristView.fxml"));
-		        	loader.setControllerFactory(c -> {return new ControllerGuiHomePageTourist(this.bs);});
+		        	loader.setControllerFactory(c -> new ControllerGuiHomePageTourist(this.bs));
 		        	Parent rootParent = loader.load();
 		        	myAnchorPane.getChildren().setAll(rootParent);
 		    	}
@@ -130,10 +129,11 @@ public class RegisterGuiController extends UserBaseGuiController {
     		{
     			switch(de.getCode())
     			{
-    				case 0: setErrorLabelText(0);
-    				case 1: setErrorLabelText(1);
-    				case 2: setErrorLabelText(2);
-    				case 3: setErrorLabelText(3);
+    				case 0: setErrorLabelText(0); break;
+    				case 1: setErrorLabelText(1); break;
+    				case 2: setErrorLabelText(2); break;
+    				case 3: setErrorLabelText(3); break;
+    				default: setErrorLabelText(-1);
     			}
     		}
     		catch(AlreadyInUseUsernameException ae)		//the username has already been chosen
@@ -168,6 +168,8 @@ public class RegisterGuiController extends UserBaseGuiController {
 				this.passwordError.setText(this.passwordErrorMessage);
 				this.passwordError.setVisible(true);
 				break;
+			default: this.genericError.setText("Please try again.");
+					 this.genericError.setVisible(true);
     	}
     }
 

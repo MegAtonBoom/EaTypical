@@ -10,7 +10,6 @@ public abstract class User {
 	private String name;
 	private String surname;
 	private String username;
-	//private boolean notification;
 		
 	
 	protected User(String name, String surname,String username) {
@@ -43,12 +42,5 @@ public abstract class User {
 		this.surname = surname;
 	}
 
-	/*public boolean isNotification() {
-		return notification;
-	}
-
-	public void setNotification(boolean notification) {
-		this.notification = notification;
-	}	*/
 	
 }
