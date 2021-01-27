@@ -3,7 +3,6 @@ package logic.controller.guicontroller.login;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -16,9 +15,7 @@ import logic.controller.applicationcontroller.Login;
 import logic.controller.guicontroller.ControllerGuiHomePageOwner;
 import logic.controller.guicontroller.ControllerGuiHomePageTourist;
 import logic.controller.guicontroller.UserBaseGuiController;
-import logic.controller.guicontroller.ManageMenuGuiController.ControllerGuiConfirmMessageView;
 import logic.engineeringclasses.bean.login.BeanUser;
-import logic.engineeringclasses.bean.manageMenu.BeanAddDish;
 import logic.engineeringclasses.exceptions.DataException;
 import logic.engineeringclasses.exceptions.WrongUsernameOrPasswordException;
 import logic.engineeringclasses.others.Session;
@@ -71,7 +68,7 @@ public class LoginGuiController extends UserBaseGuiController {
 
 
     @FXML
-    void loginMethod(ActionEvent event) throws IOException {
+    void loginMethod() throws IOException {
     	
     	User loggedUser;
     	boolean isOwner=ownerCheckbox.isSelected();
@@ -88,7 +85,7 @@ public class LoginGuiController extends UserBaseGuiController {
 	    	Login loginAppContr= new Login();
 	    	System.out.println("Dragon Ball");
 	    	loggedUser=loginAppContr.loginMethod(bu);		//try to login
-	    	//TODO    call the homepage and pass the user	    	
+	    	//   call the homepage and pass the user	    	
 	      	this.bs.setUser(loggedUser);
 	      	System.out.println(loggedUser.getUsername());
 	      	if(isOwner) {
@@ -114,7 +111,6 @@ public class LoginGuiController extends UserBaseGuiController {
     		this.dataError.setVisible(true);
     	}
     	catch (Exception e) {				//other unexpected exception that may occur
-    		e.printStackTrace();
     		this.genericError.setText(e.getMessage());
     		this.genericError.setVisible(true);
 		}

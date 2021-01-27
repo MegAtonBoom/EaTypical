@@ -19,7 +19,6 @@ import logic.controller.guicontroller.UserBaseGuiController;
 import logic.engineeringclasses.bean.login.BeanUser;
 import logic.engineeringclasses.exceptions.AlreadyInUseUsernameException;
 import logic.engineeringclasses.exceptions.DataException;
-import logic.engineeringclasses.factory.UserFactory;
 import logic.engineeringclasses.others.Session;
 import logic.model.Owner;
 import logic.model.Tourist;

@@ -10,7 +10,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.AnchorPane;
 import logic.controller.guicontroller.ItalianViewBaseGuiController;
 import logic.engineeringclasses.exceptions.EmptyFieldException;
 import logic.engineeringclasses.others.Session;
@@ -36,10 +35,6 @@ public class ControllerGuiItalianViewCity extends ItalianViewBaseGuiController{
     private URL location;
 
     @FXML
-    private AnchorPane myAnchorPane;
-
-
-    @FXML
     private Button searchButton;
 
     @FXML
@@ -57,14 +52,12 @@ public class ControllerGuiItalianViewCity extends ItalianViewBaseGuiController{
 
     @FXML
     void search(ActionEvent event) throws IOException {
-    	System.out.print("Search\n");
     	try    	
     	{
 	    	String city=choiceBox.getValue();
 	    	if(city==null){
 				throw new EmptyFieldException("There is no city selected.");
-			}
-	    	//SizedStack.getSizedStack().push("/logic/view/standalone/ChooseRestaurant/RestaurantView.fxml");
+			}	    	
 	    	FXMLLoader loader=new FXMLLoader(getClass().getResource(this.restViewPage));
 			loader.setControllerFactory(c -> new ControllerGuiRestaurantView(city, bs));
 			Parent root=loader.load();
