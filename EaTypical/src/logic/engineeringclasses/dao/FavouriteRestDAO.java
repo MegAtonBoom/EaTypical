@@ -5,12 +5,13 @@
 package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import logic.engineeringclasses.others.Connect;
 import logic.engineeringclasses.query.QueryFavouriteRest;
 import logic.engineeringclasses.query.QueryRestByName;
 import logic.model.Restaurant;
@@ -19,11 +20,13 @@ import logic.model.Restaurant;
 public class FavouriteRestDAO {
 
 //Note this is the USER on the DBMS that has proper privileges in order to access the specific DB 	
-    private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
-    private static String driverClassName = "com.mysql.jdbc.Driver";
+    //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
+    //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Kp*d.!>3&serverTimezone=UTC";
+    
 
     public static List<Restaurant> findFavourites(String tourist) throws SQLException, ClassNotFoundException {
         // STEP 1: dichiarazioni
+    	String driverClassName = "com.mysql.jdbc.Driver";
         Statement stmt = null;
         Connection conn = null;
         List<Restaurant> listOfRestaurants = new ArrayList<>();
@@ -31,8 +34,7 @@ public class FavouriteRestDAO {
         try {
             Class.forName(driverClassName);
 
-            // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(connectionString);
+            conn = Connect.getInstance().getDBConnection();
             // STEP 4: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
@@ -52,53 +54,38 @@ public class FavouriteRestDAO {
 	            }while(rs.next());
             }
             
-            // STEP 5.1: Clean-up dell'ambiente
+            
             rs.close();
         	} finally {
-            // STEP 5.2: Clean-up dell'ambiente
+            
             
                 if (stmt != null)
-                    stmt.close();
-            
-            try {
-                if (conn != null)
-                    conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
-            }
+                    stmt.close(); 
         }
 
         return listOfRestaurants;
     }
 
     public static void insertFavourite(String rest, String tourist) throws ClassNotFoundException, SQLException {
-        // STEP 1: dichiarazioni
         Statement stmt = null;
         Connection conn = null;
+        String driverClassName = "com.mysql.jdbc.Driver";
         
         try {
-            // STEP 2: loading dinamico del driver mysql
+            
             Class.forName(driverClassName);
 
-            // STEP 3: apertura connessione
-            conn = DriverManager.getConnection(connectionString);
-
-            // STEP 4.1: creazione ed esecuzione della query
+            conn = Connect.getInstance().getDBConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
-           
-
-            // STEP 4.2: creazione ed esecuzione della query
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
+            
             QueryFavouriteRest.insertFavourite(stmt, rest, tourist); 
 
-        } finally {
-            // STEP 5.2: Clean-up dell'ambiente        	
+        } finally {     	
                 if (stmt != null)
                     stmt.close();
-                if (conn != null)
-                    conn.close();
         }
     }
 

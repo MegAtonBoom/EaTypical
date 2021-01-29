@@ -1,7 +1,6 @@
 package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -9,7 +8,7 @@ import java.util.List;
 
 import logic.engineeringclasses.exceptions.AlreadyInUseUsernameException;
 import logic.engineeringclasses.exceptions.LoginDBException;
-import logic.engineeringclasses.factory.UserFactory;
+import logic.engineeringclasses.others.Connect;
 import logic.engineeringclasses.query.QueryLogin;
 import logic.engineeringclasses.query.QueryNotifications;
 import logic.model.Owner;
@@ -20,14 +19,12 @@ import logic.model.Review;
 import logic.model.User;
 
 public class OwnerDAO {
-	private static String DB_USER = "root";
-    private static String DB_PASS = "password";
-    private static String DB_URL = "jdbc:mysql://localhost:3308/progettoispwfinaledatabase";
-    private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
-    private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
+    
+    //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
 
     public static User selectOwner(String user, String pw) throws Exception 
     {
+    	String driverClassName = "com.mysql.jdbc.Driver";
         Statement stmt = null;
         Connection conn = null;
         List<OwnerReviewNotification> ownerRev= new ArrayList<OwnerReviewNotification>();
@@ -39,10 +36,8 @@ public class OwnerDAO {
         List<Restaurant> restaurants;
         System.out.println("Dragon Ball");
         try {
-            Class.forName(DRIVER_CLASS_NAME);
-            //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            //apro la connssione verso il DBMS
-			conn = DriverManager.getConnection(connectionString);
+            Class.forName(driverClassName);
+			conn = Connect.getInstance().getDBConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             
@@ -55,9 +50,7 @@ public class OwnerDAO {
             name=rs.getString("Nome");
             surname=rs.getString("Cognome");
             username=rs.getString("Username");   
-            System.out.println("Dragon Balllllllll " + username);
             restaurants= OwnerRestaurantsDAO.findYourRestaurant(username);
-            System.out.print("Dopo find Restaurant riga 59\n");
             for(Restaurant rest: restaurants) {		//for each owner restaurant
             	rs=QueryNotifications.ownerReviewNotifications(stmt, rest.getName());		//get notifications about new reviews
             	if(rs.first())
@@ -78,8 +71,6 @@ public class OwnerDAO {
         	} finally {	      	
                 if (stmt != null)
                     stmt.close();
-                if (conn != null)
-                    conn.close();
         	}                 
         owner = new Owner(name, surname, restaurants, username, ownerRev, ownerSched); //use the factory to return a owner object
         System.out.println("Dragon Ball");
@@ -98,13 +89,14 @@ public class OwnerDAO {
     public static void insertOwner(User user, String pw) throws Exception {
         Statement stmt = null;
         Connection conn = null;
+        String driverClassName = "com.mysql.jdbc.Driver";
         
         try {
         	
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
 
             //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            conn = DriverManager.getConnection(connectionString);
+            conn = Connect.getInstance().getDBConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             
@@ -123,8 +115,6 @@ public class OwnerDAO {
         } finally {    	
                 if (stmt != null)
                     stmt.close();
-                if (conn != null)
-                    conn.close();
         }
     }
 }

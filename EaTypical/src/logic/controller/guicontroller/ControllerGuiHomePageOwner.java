@@ -68,6 +68,12 @@ public class ControllerGuiHomePageOwner extends OwnerBaseGuiController {
    	//cambio scena
    	myAnchorPane.getChildren().setAll(rootParent);
     }
+    
+
+    @FXML
+    void goToSponsorRestaurant(ActionEvent event) {
+
+    }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {

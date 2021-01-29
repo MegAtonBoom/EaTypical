@@ -52,11 +52,11 @@ public class ScheduleTripRestaurantDAO {
 					}
 				}
 				
-				while(rs.getString("Nome").equals(name)) {
+				do {
 					openingHours[rs.getInt("GiornoSettimana")-1][0] = rs.getBoolean("ApertoAPranzo");
-					openingHours[rs.getInt("GiornoSettimana")-1][1] = rs.getBoolean("ApertoACena");
-					rs.next();
-				}
+					openingHours[rs.getInt("GiornoSettimana")-1][1] = rs.getBoolean("ApertoACena");					
+				} while(rs.next() && rs.getString("Nome").equals(name));
+				
 				rs.previous();
 				
 				Restaurant rest = new Restaurant(owner, city, menu, address, name, avgVote, null, null, openingHours);

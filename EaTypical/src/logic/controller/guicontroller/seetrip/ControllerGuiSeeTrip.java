@@ -10,10 +10,10 @@ import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.cell.PropertyValueFactory;
-import logic.controller.applicationcontroller.SeeTrip;
 import logic.controller.guicontroller.SchedulingBaseGuiController;
 import logic.engineeringclasses.bean.scheduletrip.BeanOutputSchedule;
 import logic.engineeringclasses.bean.scheduletrip.ConvertedBeanSchedule;
+import logic.engineeringclasses.dao.SchedulingDAO;
 import logic.engineeringclasses.others.Session;
 
 public class ControllerGuiSeeTrip extends SchedulingBaseGuiController {
@@ -71,13 +71,13 @@ public class ControllerGuiSeeTrip extends SchedulingBaseGuiController {
     @FXML
     void deleteScheduling(ActionEvent event) throws IOException {
     	try {
-    	SeeTrip seeTrip = new SeeTrip();
-    	seeTrip.deleteScheduleTrip(this.username);
+    		SchedulingDAO dao = new SchedulingDAO();
+    		dao.delete(this.bs.getUser().getUsername());
     	
-		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.seeTripPage));
-		loader.setControllerFactory(c -> new ControllerGuiSeeTrip(this.city, null, bs));
-		Parent root=loader.load();
-		myAnchorPane.getChildren().setAll(root);
+    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.seeTripPage));
+    		loader.setControllerFactory(c -> new ControllerGuiSeeTrip(this.city, null, bs));
+    		Parent root=loader.load();
+    		myAnchorPane.getChildren().setAll(root);
     	}
     	
     	catch(Exception e) {

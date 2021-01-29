@@ -1,8 +1,10 @@
 package logic.engineeringclasses.adapter;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import logic.controller.applicationcontroller.ScheduleTrip;
+import logic.engineeringclasses.exceptions.NoResultException;
 import logic.model.Restaurant;
 
 public class ScheduleTripAdapter implements ChooseSpecificRestaurants{
@@ -19,7 +21,7 @@ public class ScheduleTripAdapter implements ChooseSpecificRestaurants{
 		return this.st.callDAO(city,false,false);
 	}
 	
-	public List<Restaurant> findCeliacRestaurants(String city)
+	public List<Restaurant> findCeliacRestaurants(String city) throws ClassNotFoundException, NoResultException, SQLException
 	{
 		return this.st.callDAO(city,false,true);
 	}

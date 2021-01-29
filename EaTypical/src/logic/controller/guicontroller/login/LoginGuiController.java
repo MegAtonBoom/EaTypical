@@ -26,6 +26,8 @@ public class LoginGuiController extends UserBaseGuiController {
 	private String userErrorMessage="The username can't be empty!";
 	private String passwordErrorMessage="The password can't be empty!";
 	
+	private String registerPage="/logic/view/standalone/login/registerView.fxml";
+	
 	
 	 public LoginGuiController(Session bs){
 	 	super(bs);
@@ -59,12 +61,23 @@ public class LoginGuiController extends UserBaseGuiController {
     @FXML
     private Label genericError;
     
+    @FXML
+    private Button registerButton;
+    
 
     @FXML
     private PasswordField passwordField;
 
     @FXML
     private TextField usernameField;
+    
+    @FXML
+    void registerMethod() throws IOException {
+    	FXMLLoader loader=new FXMLLoader(getClass().getResource(this.registerPage));
+    	loader.setControllerFactory(c -> new RegisterGuiController(bs));
+    	Parent root=loader.load();
+    	myAnchorPane.getChildren().setAll(root);
+    }
 
 
     @FXML
@@ -84,8 +97,11 @@ public class LoginGuiController extends UserBaseGuiController {
 	    	bu.setPassword(pw);
 	    	Login loginAppContr= new Login();
 	    	loggedUser=loginAppContr.loginMethod(bu);		//try to login
+	    	System.out.println("Dragonball");
 	    	//   call the homepage and pass the user	    	
 	      	this.bs.setUser(loggedUser);
+	      	this.bs.getSizedStack().setFirstPage(isOwner);
+	      	this.bs.setOwner(isOwner);
 	      	if(isOwner) {
 	    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageOwnerView.fxml"));
 	        	loader.setControllerFactory(c ->  new ControllerGuiHomePageOwner(this.bs));
@@ -109,7 +125,7 @@ public class LoginGuiController extends UserBaseGuiController {
     		this.dataError.setVisible(true);
     	}
     	catch (Exception e) {				//other unexpected exception that may occur
-    		this.genericError.setText(e.getMessage());
+    		this.genericError.setText("Please try again later");
     		this.genericError.setVisible(true);
 		}
   
@@ -152,6 +168,7 @@ public class LoginGuiController extends UserBaseGuiController {
         assert dataError != null : "fx:id=\"dataError\" was not injected: check your FXML file 'LoginView.fxml'.";
         assert ownerCheckbox != null : "fx:id=\"ownerCheckbox\" was not injected: check your FXML file 'LoginView.fxml'.";
         assert genericError != null : "fx:id=\"genericError\" was not injected: check your FXML file 'LoginView.fxml'.";
+        assert registerButton != null : "fx:id=\"registerButton\" was not injected: check your FXML file 'LoginView.fxml'.";
 
     }
 }

@@ -24,9 +24,7 @@ public class ScheduleTrip {
 	
 	public BeanOutputSchedule[] generateScheduling(BeanRestaurantSchedule beanCRS) throws NoResultException, ClassNotFoundException, SQLException, NoSuchAlgorithmException {
 		
-		// Query of the restaurants that are in the selected city and satisfy tourist's eventual food requirements
-		ScheduleTripRestaurantDAO dao = new ScheduleTripRestaurantDAO();
-		List<Restaurant> listOfRestaurants = dao.select(beanCRS.getCity(), beanCRS.isVegan(), beanCRS.isCeliac());		// List of restaurants that satisfy the most important conditions given by the tourist.
+		List<Restaurant> listOfRestaurants = callDAO(beanCRS.getCity(), beanCRS.isVegan(), beanCRS.isCeliac());
 		
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(beanCRS.getDate1());
@@ -43,7 +41,7 @@ public class ScheduleTrip {
 			throw new NoResultException("No restaurant has been found.");
 		}
 		
-		List<Restaurant> validRestaurants = getValidRestaurants(beanCRS, numMeals, listOfRestaurants2);			// Restaurants that can actually be part of trip scheduling
+		List<Restaurant> validRestaurants = getValidRestaurants(beanCRS, numMeals, listOfRestaurants2);			// Restaurants that can actually be part of trip scheduling				
 		List<BeanOutputRestaurant> validBeanRestaurants = convertValidRestaurantsList(validRestaurants);
 		
 		int dayOfWeek = firstDayOfWeek;
@@ -82,6 +80,12 @@ public class ScheduleTrip {
 		
 	}
 	
+	public List<Restaurant> callDAO(String city, boolean isVegan, boolean isCeliac) throws ClassNotFoundException, NoResultException, SQLException {
+		// Query of the restaurants that are in the selected city and satisfy tourist's eventual food requirements
+		ScheduleTripRestaurantDAO dao = new ScheduleTripRestaurantDAO();
+		return dao.select(city, isVegan, isCeliac);		// List of restaurants that satisfy the most important conditions given by the tourist.	
+	}
+	
 	// Computation of number of days of the trip
 	private int getNumDays(BeanRestaurantSchedule beanCRS, Calendar cal) {
 		int numDays=0;
@@ -100,16 +104,13 @@ public class ScheduleTrip {
 	// Computation of number of meals of the trip
 	private int getNumMeals(BeanRestaurantSchedule beanCRS, int numDays) {
 		int numMeals;
-		if(beanCRS.isAtLunch1() && !beanCRS.isAtLunch2()) {
+		
+		if((beanCRS.isAtLunch1() && !beanCRS.isAtLunch2()) || (!beanCRS.isAtLunch1() && beanCRS.isAtLunch2())) {
 			numMeals=2*numDays;
-		}
-		else if(!beanCRS.isAtLunch1() && beanCRS.isAtLunch2()) {
-			numMeals=2*numDays-2;
 		}
 		else {
 			numMeals=2*numDays-1;
-		}
-		
+		}		
 		return numMeals;
 	}
 	
@@ -163,7 +164,7 @@ public class ScheduleTrip {
 			isOk = checkOpeningHoursOfOneRest(requiredMealsWeek, r);
 
 			if(!isOk) {
-				listOfRestaurants.remove(r);	// If an extracted restaurant is never open for the trip, remove it from the array-list.
+				iter.remove();			// If an extracted restaurant is never open for the trip, remove it from the array-list.
 			}
 			
 		}
@@ -195,9 +196,11 @@ public class ScheduleTrip {
 		
 		else {													// If mt == number of meals of the trip divided by 3, then we will do a selection of restaurants in listOfRestaurants based on their budget and their average vote.
 			validRestaurants = new ArrayList<>();
-			int mt = numMeals/3;
-			iter = listOfRestaurants.iterator();
+			int mt;
+			if((numMeals/3)>0) mt=numMeals/3;
+			else mt=1;											// We assume that minimum threshold has ALWAYS to be at least 1.
 			
+			iter = listOfRestaurants.iterator();			
 			while(iter.hasNext()) {
 				Restaurant r = iter.next();
 				if(r.getMenu().getTotalPrice() <= beanCRS.getBudget() && r.getAvgVote() >= (double)beanCRS.getQuality()) {
@@ -222,7 +225,7 @@ public class ScheduleTrip {
 		int remainingRestaurants = mt-validRestaurants.size();
 		listOfRestaurants.removeAll(validRestaurants);
 		
-		List<Restaurant> temporaryList = getTemporaryList(beanCRS, listOfRestaurants);		// Restaurants which are potentially valid for the scheduling (their budget but not their quality is compliant with tourist's request)
+		List<Restaurant> temporaryList = getRestaurantsNotRespectingVote(beanCRS, listOfRestaurants);		// Restaurants which are potentially valid for the scheduling (their budget but not their quality is compliant with tourist's request)		
 		listOfRestaurants.removeAll(temporaryList);
 		
 		Iterator<Restaurant> iter;
@@ -232,7 +235,7 @@ public class ScheduleTrip {
 		if(temporaryList.size() >= remainingRestaurants) {
 			double minVote = getMinVote(temporaryList, remainingRestaurants);				// Lower bound of the range of quality of valid restaurants	
 			
-			List<Restaurant> temporaryList2 = deleteRestaurantsWithTooLowVote(temporaryList, minVote);
+			List<Restaurant> temporaryList2 = deleteRestaurantsWithTooLowVote(temporaryList, minVote);			
 			validRestaurants.addAll(temporaryList2);				
 		}		
 		else {
@@ -269,7 +272,7 @@ public class ScheduleTrip {
 		return validRestaurants;		
 	}
 	
-	private List<Restaurant> getTemporaryList(BeanRestaurantSchedule beanCRS, List<Restaurant> listOfRestaurants) {
+	private List<Restaurant> getRestaurantsNotRespectingVote(BeanRestaurantSchedule beanCRS, List<Restaurant> listOfRestaurants) {
 		Iterator<Restaurant> iter = listOfRestaurants.iterator();
 		List<Restaurant> temporaryList = new ArrayList<>();
 		
@@ -345,6 +348,7 @@ public class ScheduleTrip {
 			Restaurant r = iter.next();
 			listOfVotes.add(r.getAvgVote());
 		}
+		Collections.sort(listOfVotes);
 		Collections.reverse(listOfVotes);
 		
 		return listOfVotes.get(remainingRestaurants-1);			// Lower bound of the range of quality of valid restaurants
@@ -393,7 +397,7 @@ public class ScheduleTrip {
 	
 	public void saveScheduleTrip(ConvertedBeanSchedule[] scheduling, String username) throws ClassNotFoundException, SQLException {
 		SchedulingDAO dao = new SchedulingDAO();
-		Tourist tourist = new Tourist(null, null, username, null, null);		
+		Tourist tourist = new Tourist(null, null, username, null, null, null);	
 		double doubleAvgPrice;
 		double doubleAvgVote;
 		boolean atLunch;

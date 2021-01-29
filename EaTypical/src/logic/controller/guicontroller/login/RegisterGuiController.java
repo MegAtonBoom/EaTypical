@@ -89,36 +89,47 @@ public class RegisterGuiController extends UserBaseGuiController {
     void registerMethod(ActionEvent event) {
     		try
     		{
+    			System.out.println("DragonBall 1");
 	    		String username=this.usernameField.getText();
 	    		String name=this.nameField.getText();
 	    		String surname=this.surnameField.getText();
 	    		String pw=this.passwordField.getText();
 	    		boolean isOwner=this.ownerCheckbox.isSelected();
+	    		System.out.println(""+isOwner);
+	    		System.out.println("DragonBall 1");
 	    		BeanUser bu=new BeanUser();
 	    		bu.setName(name);
 	    		bu.setSurname(surname);
 	    		bu.setUsername(username);
 	    		bu.setPassword(pw);   		
 	    		bu.setOwner(isOwner);
-	    		Login registerAppCont= new Login();		
+	    		Login registerAppCont= new Login();	
+	    		System.out.println("DragonBall 1");
 	    		registerAppCont.registerMethod(bu);						//try to register
+	    		System.out.println("DragonBall 1");
 	    		User user;
 	    		if(isOwner)
 	    		{
 	    			user=new Owner(name, surname, null, username, null, null);
+	    			
 	    		}
 	    		else
 	    		{
 	    			user=new Tourist(name, surname, username, null, null,null);
+	    			System.out.println("DragonBall 1");
 	    		}			//create the correct user entity
 	    		
+	    		
 	    		this.bs.setUser(user);
+	    		this.bs.getSizedStack().setFirstPage(isOwner);
+	    		this.bs.setOwner(isOwner);
 	    		if(isOwner) {
 		    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageOwnerView.fxml"));
 		        	loader.setControllerFactory(c -> new ControllerGuiHomePageOwner(this.bs));
 		        	Parent rootParent = loader.load();
 		        	myAnchorPane.getChildren().setAll(rootParent);
 		    	}else {
+		    		System.out.println("DragonBall 1");
 		    		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageTouristView.fxml"));
 		        	loader.setControllerFactory(c -> new ControllerGuiHomePageTourist(this.bs));
 		        	Parent rootParent = loader.load();

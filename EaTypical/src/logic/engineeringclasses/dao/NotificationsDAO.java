@@ -1,33 +1,32 @@
 package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+
+import logic.engineeringclasses.others.Connect;
 import logic.engineeringclasses.query.QueryNotifications;
 import logic.model.OwnerSchedulingNotification;
 import logic.model.Restaurant;
 import logic.model.TouristNotification;
 
 public class NotificationsDAO {
-	private static String DB_USER = "root";
-    private static String DB_PASS = "password";
-    private static String DB_URL = "jdbc:mysql://localhost:3308/progettoispwfinaledatabase";
-    private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
-    private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
+    //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
+    //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Kp*d.!>3&serverTimezone=UTC";
+    
     
     //get a list with user notifications
     public static List<TouristNotification> findTouristNotifications(String user) throws Exception {
         Statement stmt = null;
         Connection conn = null;
         List<TouristNotification> listOfNotifications = new ArrayList<TouristNotification>();
-        
+        String driverClassName = "com.mysql.jdbc.Driver";
         try {
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
            //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            conn = DriverManager.getConnection(connectionString);
+            conn = Connect.getInstance().getDBConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             
@@ -49,8 +48,6 @@ public class NotificationsDAO {
         	{       	
                 if (stmt != null)
                     stmt.close();
-                if (conn != null)
-                    conn.close();
         
         	}
 
@@ -59,6 +56,7 @@ public class NotificationsDAO {
     
     
     public static List<OwnerSchedulingNotification> findOwnerNotifications(Restaurant rest) throws Exception {
+    	String driverClassName = "com.mysql.jdbc.Driver";
         Statement stmt = null;
         Connection conn = null;
         List<OwnerSchedulingNotification> listOfNotifications = new ArrayList<OwnerSchedulingNotification>();
@@ -67,9 +65,9 @@ public class NotificationsDAO {
         boolean isLunch;
         
         try {
-            Class.forName(DRIVER_CLASS_NAME);
+            Class.forName(driverClassName);
             //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-            conn = DriverManager.getConnection(connectionString);
+            conn = Connect.getInstance().getDBConnection();
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             
@@ -79,8 +77,7 @@ public class NotificationsDAO {
             {
 	            do{		//for each notification							
 	
-	                usernameTourist = rs.getString("UsernameTurista");
-	                //metti getString(..)
+	                usernameTourist = rs.getString("UsernameTurista");	                
 	                isLunch = rs.getBoolean("PranzoVsCena");
 	                date = rs.getNString("Data");
 	                OwnerSchedulingNotification osn=new OwnerSchedulingNotification(usernameTourist,isLunch,date,rest);
@@ -93,8 +90,6 @@ public class NotificationsDAO {
         	{       	
                 if (stmt != null)
                     stmt.close();
-                if (conn != null)
-                    conn.close();
         	}
 
         return listOfNotifications;

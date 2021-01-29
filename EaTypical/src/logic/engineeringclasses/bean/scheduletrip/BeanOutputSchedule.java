@@ -14,6 +14,13 @@ public class BeanOutputSchedule {
 	private BeanOutputRestaurant rest;
 	private Random random;
 	
+	public BeanOutputSchedule(Date date, boolean atLunch, BeanOutputRestaurant rest) {
+		this.date=date;
+		this.atLunch=atLunch;
+		this.listOfBeans=null;
+		this.rest=rest;
+	}
+	
 	public BeanOutputSchedule(Date date, boolean atLunch, List<BeanOutputRestaurant> listOfBeans) throws NoSuchAlgorithmException {
 		this.date=date;
 		this.atLunch=atLunch;

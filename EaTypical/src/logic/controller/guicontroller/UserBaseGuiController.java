@@ -12,7 +12,7 @@ import javafx.scene.control.Label;
 import logic.controller.guicontroller.ScheduleTrip.*;
 
 //The second layer of Graphic Controllers: every normal user has the ChooseResytaurant Button and the Schedule Trip Page button
-public abstract class UserBaseGuiController extends BaseGuiController {
+public  class UserBaseGuiController extends BaseGuiController {
 	
 	protected String errorMessage = "You must login to use this function.";
 	protected String chooseRestPage = "/logic/view/standalone/ChooseRestaurant/ItalianViewCity.fxml";

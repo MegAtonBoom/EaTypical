@@ -1,35 +1,30 @@
 package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
-
+import java.util.concurrent.TimeUnit;
 
 import logic.engineeringclasses.query.QueryLogin;
 import logic.model.User;
 import logic.engineeringclasses.exceptions.AlreadyInUseUsernameException;
 import logic.engineeringclasses.exceptions.LoginDBException;
 import logic.engineeringclasses.facade.TouristCreatorFacade;
+import logic.engineeringclasses.others.Connect;
 
 
 public class TouristDAO {
-		
-		private static String DB_USER = "root";
-	    private static String DB_PASS = "password";
-	    private static String DB_URL = "jdbc:mysql://localhost:3308/progettoispwfinaledatabase";
-	    private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
-	    private static String DRIVER_CLASS_NAME = "com.mysql.jdbc.Driver";
 
-	    private TouristDAO() {}
+	    
 	    public static User selectTourist(String user, String pw) throws Exception {
+	    	String driverClassName = "com.mysql.jdbc.Driver";
 	        Statement stmt = null;
 	        Connection conn = null;	 
 	        User tourist;
 	        try {
-	            Class.forName(DRIVER_CLASS_NAME);
-	            //conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASS);
-	            conn = DriverManager.getConnection(connectionString);
+	        	
+	            Class.forName(driverClassName);
+	            conn = Connect.getInstance().getDBConnection();
 	            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                    ResultSet.CONCUR_READ_ONLY);
 	            
@@ -38,18 +33,20 @@ public class TouristDAO {
 	            {
 	            	throw new LoginDBException(0);		
 	            }
+	            
 	            String name=rs.getString("Nome");
 	            String surname=rs.getString("Cognome");
 	            String username=rs.getString("Username");
-	            tourist=TouristCreatorFacade.getInstance().getTourist(name, surname, username);		//compose the tourist entity             
-	            rs.close();
-	        	} 
+	            
+	            tourist=TouristCreatorFacade.getInstance().getTourist(name, surname, username);		//compose the tourist entity   
+           
+	            rs.close();	
+	        	}
+	                
 	        	finally 
 	        	{       	
 	                if (stmt != null)
 	                    stmt.close();
-	                if (conn != null)
-	                    conn.close();
 	        	}
 	        return tourist;
 	    }
@@ -60,11 +57,16 @@ public class TouristDAO {
 
 	        Statement stmt = null;
 	        Connection conn = null;
+	        String driverClassName = "com.mysql.jdbc.Driver";
+	        //String driverClassName = "oracle.jdbc.driver.OracleDriver";
 	        
 	        try {
-
-	            Class.forName(DRIVER_CLASS_NAME);
-	            conn = DriverManager.getConnection(connectionString);
+	        	
+	            Class.forName(driverClassName);
+	            
+	            //TimeUnit.SECONDS.sleep(5);
+	            conn = Connect.getInstance().getDBConnection();	
+	            System.out.println("Dragonball conn");
 	            stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
 	                    ResultSet.CONCUR_READ_ONLY);	            
 	            
@@ -82,8 +84,6 @@ public class TouristDAO {
 	        {      	
 	                if (stmt != null)
 	                    stmt.close();
-	                if (conn != null)
-	                    conn.close();
 	        }
 	    }
 

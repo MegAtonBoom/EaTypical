@@ -24,6 +24,7 @@ public class ControllerGuiScheduling extends SchedulingBaseGuiController {
 	
 	private String schedulingPage = "/logic/view/standalone/ScheduleTrip/SchedulingView.fxml";
 	private String tripSettingsPage = "/logic/view/standalone/ScheduleTrip/TripSettingsView.fxml";
+	private String savedMessage = "Scheduling saved successfully.";
 	
 	public ControllerGuiScheduling(String city, BeanOutputSchedule[] scheduling, Session bs) {
 		super(bs);
@@ -63,6 +64,9 @@ public class ControllerGuiScheduling extends SchedulingBaseGuiController {
     @FXML // fx:id="errorLabel"
     private Label errorLabel; // Value injected by FXMLLoader
 
+    @FXML // fx:id="savedLabel"
+    private Label savedLabel; // Value injected by FXMLLoader
+    
     @FXML
     void generateNewScheduling(ActionEvent event) throws IOException {
     	for(int i=0; i<this.scheduling.length; i++) {
@@ -86,13 +90,15 @@ public class ControllerGuiScheduling extends SchedulingBaseGuiController {
 
     @FXML
     void saveScheduling(ActionEvent event) throws IOException {
-    	// To complete
     	try {
-    	ScheduleTrip scheduleTrip = new ScheduleTrip();
-    	scheduleTrip.saveScheduleTrip(this.convertedScheduling, this.username);
+    		ScheduleTrip scheduleTrip = new ScheduleTrip();
+    		scheduleTrip.saveScheduleTrip(this.convertedScheduling, this.bs.getUser().getUsername());
+    		savedLabel.setText(savedMessage);
     	}
     	
     	catch(Exception e) {
+    		e.printStackTrace();
+    		
     		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.schedulingPage));
     		loader.setControllerFactory(c -> new ControllerGuiScheduling(this.city, this.scheduling, "An unknown error occurred. Please, try again later.", bs));
     		Parent root=loader.load();
@@ -108,6 +114,7 @@ public class ControllerGuiScheduling extends SchedulingBaseGuiController {
         assert generateNewSchedulingButton != null : "fx:id=\"generateNewSchedulingButton\" was not injected: check your FXML file 'SchedulingView.fxml'.";
         assert saveSchedulingButton != null : "fx:id=\"saveSchedulingButton\" was not injected: check your FXML file 'SchedulingView.fxml'.";
         assert errorLabel != null : "fx:id=\"errorLabel\" was not injected: check your FXML file 'SchedulingView.fxml'.";
+        assert savedLabel != null : "fx:id=\"savedLabel\" was not injected: check your FXML file 'SchedulingView.fxml'.";
         
         if(this.bs.getUser()!=null)
         	nomeUtenteLabel.setText(this.bs.getUser().getUsername());

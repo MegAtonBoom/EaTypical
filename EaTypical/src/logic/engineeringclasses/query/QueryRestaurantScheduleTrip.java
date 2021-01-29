@@ -10,7 +10,7 @@ public class QueryRestaurantScheduleTrip {
 
 	public static ResultSet selectRestaurantsForTrip(Statement stmt, String city, boolean vegan, boolean celiac) throws SQLException {
 		String sql;
-		String firstPartQuery = "SELECT distinct Nome, Indirizzo, UsernameProprietario, VotoMedio, Totale, GiornoSettimana, ApertoAPranzo, ApertoACena FROM Ristorante, Menu M, Piatto P, Apertura A "
+		String firstPartQuery = "SELECT distinct Nome, Indirizzo, UsernameProprietario, VotoMedio, Totale, GiornoSettimana, ApertoAPranzo, ApertoACena FROM ristorante, menu M, piatto P, apertura A "
 				+ "WHERE M.NomeRistorante=Nome and P.NomeRistorante=Nome and A.NomeRistorante=Nome and Citta='" +city+ "'";
 		String lastPartQuery = " ORDER BY Nome;";
 		

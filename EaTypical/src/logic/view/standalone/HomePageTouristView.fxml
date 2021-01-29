@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="myAnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.ControllerGuiHomePageTourist">
+<AnchorPane fx:id="myAnchorPane" prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="logic.controller.guicontroller.ControllerGuiHomePageTourist">
    <children>
       <ImageView fitHeight="700.0" fitWidth="700.0" pickOnBounds="true">
          <image>
@@ -49,7 +49,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="backButton" layoutX="50.0" layoutY="480.0" mnemonicParsing="false" onAction="#logMethod" prefHeight="60.0" prefWidth="280.0" text="Logout">
+      <Button fx:id="logButton" layoutX="50.0" layoutY="480.0" mnemonicParsing="false" onAction="#logMethod" prefHeight="60.0" prefWidth="280.0" text="Logout">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>

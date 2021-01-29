@@ -6,7 +6,16 @@ public class Session {
 
 	private SizedStack sizedStack;
 	private User user;
+	private boolean isOwner;
 	
+	public boolean isOwner() {
+		return isOwner;
+	}
+
+	public void setOwner(boolean isOwner) {
+		this.isOwner = isOwner;
+	}
+
 	public Session(boolean isWeb) {
 		this.user = null;
 		//True --> WEB		False --> StandAlone

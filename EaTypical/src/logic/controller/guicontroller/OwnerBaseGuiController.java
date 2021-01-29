@@ -10,7 +10,7 @@ import javafx.scene.control.Button;
 import logic.controller.guicontroller.ManageMenuGuiController.ControllerGuiRestaurantMenuView;
 import logic.engineeringclasses.others.Session;
 
-public abstract class OwnerBaseGuiController extends BaseGuiController{
+public abstract class OwnerBaseGuiController extends BaseGuiController {
 
 	
 	public OwnerBaseGuiController(Session bs) {
@@ -22,14 +22,14 @@ public abstract class OwnerBaseGuiController extends BaseGuiController{
 	@FXML
 	public Button sponsorRestaurantButton;
 	
-	@FXML
+	/*@FXML
 	@Override
 	public void goHomePage(ActionEvent event) throws IOException {
 		
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageOwnerView.fxml"));
     	Parent rootParent = loader.load();
     	myAnchorPane.getChildren().setAll(rootParent);
-	}
+	}*/
 	
 	@FXML
 	void goToManageMenu(ActionEvent e) throws IOException {
@@ -39,13 +39,17 @@ public abstract class OwnerBaseGuiController extends BaseGuiController{
     	myAnchorPane.getChildren().setAll(rootParent);
 	}
 	
-	@FXML
-	
+	/*@FXML
 	void goToSponsorRestaurant(ActionEvent e) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/SponsorRestaurant/CreatingRestaurantView.fxml"));
     	Parent rootParent = loader.load();
     	myAnchorPane.getChildren().setAll(rootParent);
-	}
+	}*/
+
+    @FXML
+    void goToSponsorRestaurant(ActionEvent event) {
+
+    }
 }
 
 

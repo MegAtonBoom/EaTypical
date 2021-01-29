@@ -10,6 +10,11 @@ public class SizedStack {
 	private int maxSize=100;
 	private int currentSize;
 	private String firstPage;
+	private String webHomeOwner="HomePageOwnerView.jsp";
+	private String webHomeTourist="HomePageTouristView.jsp";
+	private String homeTourist="/logic/view/standalone/HomePageTouristView.fxml";
+	private String homeOwner="/logic/view/standalone/HomePageOwnerView.fxml";
+	private boolean isWeb;
 	
 	/*
 	public SizedStack() {				//constructor of the SINGLETON class
@@ -19,6 +24,7 @@ public class SizedStack {
 	}*/
 	
 	public SizedStack(boolean web) {		// (maybe) better constructor of the SINGLETON class
+		this.isWeb=web;
 		this.currentSize=0;
 		this.stack=new LinkedList<>();
 		if(web)
@@ -38,6 +44,11 @@ public class SizedStack {
 		this.currentSize++;
 	}
 	
+	public String getFirstPage() {
+		return firstPage;
+	}
+
+
 	public String pop()						//pop of a page from the stack, last inserted or homepage if the stack is empty
 	{
 		if(this.currentSize<=1)
@@ -70,9 +81,25 @@ public class SizedStack {
 		return instance;
 	}
 	*/
-	public void setFirstPage(String page)
+	public void setFirstPage(boolean isOwner)
 	{
-		this.firstPage=page;
+		if(this.isWeb&&isOwner)
+		{
+			this.firstPage=this.webHomeOwner;
+		}
+		else if(this.isWeb&&!isOwner)
+		{
+			this.firstPage=this.webHomeTourist;
+		}
+		else if(!this.isWeb&&isOwner)
+		{
+			this.firstPage=this.homeOwner;
+		}
+		else
+		{
+			this.firstPage=this.homeTourist;
+		}
+			
 	}
 	
 	public void clearStack()

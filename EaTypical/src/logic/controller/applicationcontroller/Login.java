@@ -1,6 +1,8 @@
 package logic.controller.applicationcontroller;
 
 
+import logic.model.Owner;
+import logic.model.Tourist;
 import logic.model.User;
 
 import java.sql.SQLException;
@@ -12,7 +14,6 @@ import logic.engineeringclasses.exceptions.AlreadyInUseUsernameException;
 import logic.engineeringclasses.exceptions.GenericException;
 import logic.engineeringclasses.exceptions.LoginDBException;
 import logic.engineeringclasses.exceptions.WrongUsernameOrPasswordException;
-import logic.engineeringclasses.factory.UserFactory;
 
 
 public class Login {
@@ -40,6 +41,7 @@ public class Login {
 		}
 		catch(SQLException e)				//generic exception to handle that may occour if there is a bug or some not planned interaction
 		{
+			e.printStackTrace();
 			throw new SQLException("Please try again!");
 		}
 		return user;
@@ -51,16 +53,17 @@ public class Login {
 		String surname=loggingUser.getSurname();
 		String username=loggingUser.getUsername();
 		String password=loggingUser.getPassword();
+		System.out.println("name: "+name+" surname: "+surname+" username: "+username+" password: "+password+" "+loggingUser.isOwner());
 		try
 		{
 			if(loggingUser.isOwner())
 			{
-				User newOwner=UserFactory.getFactory().createOwner(name, surname, null, username, null, null);
+				User newOwner=new Owner(name, surname, null, username, null, null);
 				OwnerDAO.insertOwner(newOwner, password);			
 			}
 			else {
-				User newtourist=UserFactory.getFactory().createTourist(name, surname, username, null, null);
-				TouristDAO.insertTourist(newtourist, password);
+				User newTourist=new Tourist(name, surname, username, null, null, null);
+				TouristDAO.insertTourist(newTourist, password);
 			}
 		}
 		catch(AlreadyInUseUsernameException ae)			//exception came form the db: the username that the user want to use is already is use by someone

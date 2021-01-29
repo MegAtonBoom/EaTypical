@@ -190,6 +190,8 @@ public class ControllerGuiTripSettings extends UserBaseGuiController {
     		myAnchorPane.getChildren().setAll(root);   
     	}
     	catch(Exception e) {
+    		e.printStackTrace();
+    		
     		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.tripSettingsPage));
     		loader.setControllerFactory(c -> new ControllerGuiTripSettings(this.city, "An unknown error occurred. Please, try again later.", bs));
     		Parent root=loader.load();
@@ -213,9 +215,10 @@ public class ControllerGuiTripSettings extends UserBaseGuiController {
 			intQuality=1;
 		}
 		else {
-			intQuality = Integer.parseInt(quality);
+			String onlyNumQuality = "" + quality.charAt(0);
+			intQuality = Integer.parseInt(onlyNumQuality);
 		}
-		
+
 		String strDate1 = meal1[1] + " " + meal1[0] + ", " + meal1[2];
 		String strDate2 = meal2[1] + " " + meal2[0] + ", " + meal2[2];
 		
