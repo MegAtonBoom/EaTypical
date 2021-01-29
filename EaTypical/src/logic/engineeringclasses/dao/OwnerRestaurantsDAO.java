@@ -15,7 +15,7 @@ public class OwnerRestaurantsDAO {
    
     
 
-    public static List<Restaurant> findYourRestaurant(String owner) throws Exception {
+    public static List<Restaurant> findYourRestaurant(String owner) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         String driverClassName = "com.mysql.jdbc.Driver";

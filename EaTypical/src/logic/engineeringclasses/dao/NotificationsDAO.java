@@ -2,6 +2,7 @@ package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +19,7 @@ public class NotificationsDAO {
     
     
     //get a list with user notifications
-    public static List<TouristNotification> findTouristNotifications(String user) throws Exception {
+    public static List<TouristNotification> findTouristNotifications(String user) throws ClassNotFoundException, SQLException  {
         Statement stmt = null;
         Connection conn = null;
         List<TouristNotification> listOfNotifications = new ArrayList<TouristNotification>();
@@ -55,7 +56,7 @@ public class NotificationsDAO {
     }
     
     
-    public static List<OwnerSchedulingNotification> findOwnerNotifications(Restaurant rest) throws Exception {
+    public static List<OwnerSchedulingNotification> findOwnerNotifications(Restaurant rest) throws ClassNotFoundException, SQLException {
     	String driverClassName = "com.mysql.jdbc.Driver";
         Statement stmt = null;
         Connection conn = null;

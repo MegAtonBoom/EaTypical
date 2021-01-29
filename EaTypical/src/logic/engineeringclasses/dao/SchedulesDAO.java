@@ -2,6 +2,7 @@ package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import logic.model.Scheduling;
 public class SchedulesDAO {
 
     
-    public static List<Scheduling> findTouristScheduling(String user) throws Exception {
+    public static List<Scheduling> findTouristScheduling(String user) throws ClassNotFoundException, SQLException {
         Statement stmt = null;
         Connection conn = null;
         String driverClassName = "com.mysql.jdbc.Driver";

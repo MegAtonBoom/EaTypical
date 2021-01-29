@@ -20,7 +20,7 @@ public class Login {
 	
 	
 	
-	public User loginMethod(BeanUser loggingUser) throws  LoginDBException,SQLException,Exception
+	public User loginMethod(BeanUser loggingUser) throws  LoginDBException,WrongUsernameOrPasswordException,SQLException, ClassNotFoundException
 	{		
 		User user;
 		
@@ -41,7 +41,6 @@ public class Login {
 		}
 		catch(SQLException e)				//generic exception to handle that may occour if there is a bug or some not planned interaction
 		{
-			e.printStackTrace();
 			throw new SQLException("Please try again!");
 		}
 		return user;

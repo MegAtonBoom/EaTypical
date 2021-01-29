@@ -55,7 +55,7 @@ public class ReviewsDAO {
 
         return listOfReviews;
     }
-    public static Review findRestaurantReviews(String restaurant,String username) throws Exception {		//recensione di un certo ristorante e di un certo utente
+    public static Review findRestaurantReviews(String restaurant,String username) throws ClassNotFoundException, SQLException {		//recensione di un certo ristorante e di un certo utente
         Statement stmt = null;
         Connection conn = null;
         String driverClassName = "com.mysql.jdbc.Driver";

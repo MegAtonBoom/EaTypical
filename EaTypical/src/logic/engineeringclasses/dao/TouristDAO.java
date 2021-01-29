@@ -2,8 +2,8 @@ package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.concurrent.TimeUnit;
 
 import logic.engineeringclasses.query.QueryLogin;
 import logic.model.User;
@@ -16,7 +16,7 @@ import logic.engineeringclasses.others.Connect;
 public class TouristDAO {
 
 	    
-	    public static User selectTourist(String user, String pw) throws Exception {
+	    public static User selectTourist(String user, String pw) throws ClassNotFoundException, SQLException,LoginDBException   {
 	    	String driverClassName = "com.mysql.jdbc.Driver";
 	        Statement stmt = null;
 	        Connection conn = null;	 
@@ -53,7 +53,7 @@ public class TouristDAO {
 
 	    
 	    
-	    public static void insertTourist(User user, String pw) throws Exception {
+	    public static void insertTourist(User user, String pw) throws ClassNotFoundException, SQLException, AlreadyInUseUsernameException {
 
 	        Statement stmt = null;
 	        Connection conn = null;

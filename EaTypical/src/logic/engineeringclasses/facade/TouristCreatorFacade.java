@@ -1,5 +1,6 @@
 package logic.engineeringclasses.facade;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import logic.engineeringclasses.dao.FavouriteRestDAO;
@@ -26,7 +27,7 @@ public class TouristCreatorFacade {
 		return instance;
 	}
 	
-	public Tourist getTourist(String name, String surname, String username) throws Exception
+	public Tourist getTourist(String name, String surname, String username) throws ClassNotFoundException, SQLException 
 	{
 		List<Restaurant> favourites=FavouriteRestDAO.findFavourites(username);
 		List<TouristNotification> notifications=NotificationsDAO.findTouristNotifications(username);

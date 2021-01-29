@@ -2,6 +2,7 @@ package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class OwnerDAO {
     
     //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
 
-    public static User selectOwner(String user, String pw) throws Exception 
+    public static User selectOwner(String user, String pw) throws ClassNotFoundException, SQLException, LoginDBException 
     {
     	String driverClassName = "com.mysql.jdbc.Driver";
         Statement stmt = null;
@@ -79,14 +80,14 @@ public class OwnerDAO {
     
     
     //find the review of specific user, for a specific restaurant
-    private static Review findSpecificReview(String restName, String username) throws Exception
+    private static Review findSpecificReview(String restName, String username) throws ClassNotFoundException, SQLException
     {
     	return ReviewsDAO.findRestaurantReviews(restName,username);
     }
 
     
     //insert a user owner in the db
-    public static void insertOwner(User user, String pw) throws Exception {
+    public static void insertOwner(User user, String pw) throws ClassNotFoundException, SQLException, AlreadyInUseUsernameException {
         Statement stmt = null;
         Connection conn = null;
         String driverClassName = "com.mysql.jdbc.Driver";
