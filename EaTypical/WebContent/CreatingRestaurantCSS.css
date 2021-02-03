@@ -59,7 +59,7 @@ body {
 	height: 22%;
 	position: absolute;
 	left: 12%;
-	top: 32.14%;
+	top: 37.14%;
 	background-color: rgba(0,0,0,0.7);
 }
 
@@ -68,7 +68,7 @@ body {
 	height: 17%;
 	position: absolute;
 	left: 12%;
-	top: 60%;
+	top: 65%;
 	background-color: rgba(0,0,0,0.7);
 }
 
@@ -85,30 +85,30 @@ p {
 }
 
 #restName {
-	top: 32.14%;
+	top: 37.14%;
 }
 
 #restAddress {
-	top: 40.34%;
+	top: 45.34%;
 }
 
 #scrollbar {
-	top: 48.54%;
-}
-
-.buttonbelow {	
-	height: 7.29%;
-	position: absolute;
+	top: 53.54%;
 }
 
 #setOpeningHours {
 	width: 25.14%;
+	height: 7.29%;
+	position: absolute;
 	left: 60%;
-	top: 64.36%;
+	top: 69.36%;
 }
 
-#done {
-	width: 15.14%;
-	left: 42.43%;
-	top: 82.14%;
+#errorMsg {
+	position: absolute;
+	left: 5.71%;
+	top: 84.29%;
+	color: red;
+	font-size: 11px;
+	background-color: rgba(0,0,0,0.7);
 }

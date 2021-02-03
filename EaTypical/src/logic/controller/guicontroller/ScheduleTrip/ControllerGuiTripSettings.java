@@ -7,6 +7,7 @@ package logic.controller.guicontroller.ScheduleTrip;
 import logic.controller.applicationcontroller.ScheduleTrip;
 import logic.controller.guicontroller.UserBaseGuiController;
 import logic.engineeringclasses.bean.scheduletrip.BeanRestaurantSchedule;
+import logic.engineeringclasses.bean.scheduletrip.BeanSyntacticCheck;
 import logic.engineeringclasses.bean.scheduletrip.BeanOutputSchedule;
 import logic.engineeringclasses.exceptions.EmptyFieldException;
 import logic.engineeringclasses.exceptions.InvalidDateException;
@@ -14,12 +15,7 @@ import logic.engineeringclasses.exceptions.NoResultException;
 import logic.engineeringclasses.others.Session;
 import java.io.IOException;
 import java.net.URL;
-import java.text.DateFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,20 +34,14 @@ import javafx.scene.control.ToggleGroup;
 public class ControllerGuiTripSettings extends UserBaseGuiController {
 	ObservableList<String> list = FXCollections.observableArrayList();
 	
-	private String tripSettingsPage = "/logic/view/standalone/ScheduleTrip/TripSettingsView.fxml";
 	private String schedulingPage = "/logic/view/standalone/ScheduleTrip/SchedulingView.fxml";
 	private String city;
-	private String errorMessage="";
+	private String message;
 	
 	public ControllerGuiTripSettings(String city, Session bs) {
 		super(bs);
 		this.city=city;
-	}
-	
-	public ControllerGuiTripSettings(String city, String errorMessage, Session bs) {
-		super(bs);
-		this.city=city;
-		this.errorMessage=errorMessage;
+		this.message="Budget and rating may not be satisfied if there are too few\nrestaurants that meet all the requirements.";
 	}
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -138,8 +128,10 @@ public class ControllerGuiTripSettings extends UserBaseGuiController {
     		boolean atLunch1 = (selToggle1.equals("RadioButton[id=radioLunch1, styleClass=radio-button]'Lunch'"));
     		String selToggle2 = lastMeal.getSelectedToggle().toString();
     		boolean atLunch2 = (selToggle2.equals("RadioButton[id=radioLunch2, styleClass=radio-button]'Lunch'"));
-    		String budget = textBudget.getText();
-    		String quality = rangeQuality.getValue();
+    		
+    		String[] budgetAndQuality = new String[2];
+    		budgetAndQuality[0] = textBudget.getText();
+    		budgetAndQuality[1] = rangeQuality.getValue();
     		
     		for(int i=0; i<3; i++) {
     			if(meal1[i]==null || meal2[i]==null) {
@@ -147,7 +139,8 @@ public class ControllerGuiTripSettings extends UserBaseGuiController {
     			}
     		}
     		
-    		BeanRestaurantSchedule beanRestSched = syntacticCheck(meal1, atLunch1, meal2, atLunch2, foodRequirement, budget, quality);    		
+    		BeanSyntacticCheck beanSyntCheck = new BeanSyntacticCheck();
+    		BeanRestaurantSchedule beanRestSched = beanSyntCheck.syntacticCheck(meal1, atLunch1, meal2, atLunch2, foodRequirement, budgetAndQuality, this.city);    		
     		ScheduleTrip scheduleTrip = new ScheduleTrip();
     		BeanOutputSchedule[] scheduling = scheduleTrip.generateScheduling(beanRestSched);
     		
@@ -160,110 +153,25 @@ public class ControllerGuiTripSettings extends UserBaseGuiController {
     	}
     	
     	catch(NumberFormatException e) {
-    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.tripSettingsPage));
-    		loader.setControllerFactory(c -> new ControllerGuiTripSettings(this.city, "Sorry, you entered an invalid budget.", bs));
-    		Parent root=loader.load();
-    		myAnchorPane.getChildren().setAll(root);    		
+    		errorLabel.setText("Sorry, you entered an invalid budget."); 		
     	}
     	catch(InvalidDateException e) {
-    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.tripSettingsPage));
-    		loader.setControllerFactory(c -> new ControllerGuiTripSettings(this.city, "Last meal cannot be before first meal; you cannot schedule trips which last more than 30 days;\nyou cannot schedule trips in the past.", bs));
-    		Parent root=loader.load();
-    		myAnchorPane.getChildren().setAll(root);   
+    		errorLabel.setText("Last meal cannot be before first meal; you cannot schedule trips which last more than 30 days;\nyou cannot schedule trips in the past.");
     	}
     	catch(ParseException e) {
-    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.tripSettingsPage));
-    		loader.setControllerFactory(c -> new ControllerGuiTripSettings(this.city, "Sorry, you entered a nonexistent date.", bs));
-    		Parent root=loader.load();
-    		myAnchorPane.getChildren().setAll(root);
+    		errorLabel.setText("Sorry, you entered a nonexistent date.");
     	}
     	catch(EmptyFieldException e) {
-    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.tripSettingsPage));
-    		loader.setControllerFactory(c -> new ControllerGuiTripSettings(this.city, "You need to specify both the first day of your trip and the last day of your trip.", bs));
-    		Parent root=loader.load();
-    		myAnchorPane.getChildren().setAll(root);   
+    		errorLabel.setText("You need to specify both the first day of your trip and the last day of your trip.");
     	}
     	catch(NoResultException e) {
-    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.tripSettingsPage));
-    		loader.setControllerFactory(c -> new ControllerGuiTripSettings(this.city, "No restaurant has been found.", bs));
-    		Parent root=loader.load();
-    		myAnchorPane.getChildren().setAll(root);   
+    		errorLabel.setText("No restaurant has been found.");
     	}
     	catch(Exception e) {
-    		e.printStackTrace();
-    		
-    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.tripSettingsPage));
-    		loader.setControllerFactory(c -> new ControllerGuiTripSettings(this.city, "An unknown error occurred. Please, try again later.", bs));
-    		Parent root=loader.load();
-    		myAnchorPane.getChildren().setAll(root);
+    		errorLabel.setText("An unknown error occurred. Please, try again later.");
     	}
     	
     }
-	
-	public BeanRestaurantSchedule syntacticCheck(String[] meal1, boolean atLunch1, String[] meal2, boolean atLunch2, boolean[] foodRequirement, String budget, String quality) throws NumberFormatException, ParseException, InvalidDateException {		
-		double doubleBudget;
-		int intQuality;
-		
-		if(budget.equals("")) {
-			doubleBudget = Double.POSITIVE_INFINITY;
-		}
-		else {
-			doubleBudget = Double.parseDouble(budget);
-		}
-		
-		if(quality==null) {
-			intQuality=1;
-		}
-		else {
-			String onlyNumQuality = "" + quality.charAt(0);
-			intQuality = Integer.parseInt(onlyNumQuality);
-		}
-
-		String strDate1 = meal1[1] + " " + meal1[0] + ", " + meal1[2];
-		String strDate2 = meal2[1] + " " + meal2[0] + ", " + meal2[2];
-		
-		DateFormat df = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
-		df.setLenient(false);
-		
-		Date[] dateArray = new Date[2];
-		dateArray[0] = df.parse(strDate1);
-		dateArray[1] = df.parse(strDate2);
-		Calendar cal = Calendar.getInstance();
-		
-		cal.setTime(dateArray[0]);
-		if(atLunch1) cal.add(Calendar.HOUR_OF_DAY, 15);
-		else cal.add(Calendar.HOUR_OF_DAY, 22);
-		dateArray[0] = cal.getTime();
-		
-		cal.setTime(dateArray[1]);
-		if(atLunch2) cal.add(Calendar.HOUR_OF_DAY, 15);
-		else cal.add(Calendar.HOUR_OF_DAY, 22);
-		dateArray[1] = cal.getTime();
-		
-		if(dateArray[1].compareTo(dateArray[0])<0) {
-			throw new InvalidDateException("Last meal cannot be before first meal.");
-		}	
-		
-		Date d;		
-		cal.setTime(dateArray[1]);
-		cal.add(Calendar.DATE, -30);
-		d=cal.getTime();
-		if(dateArray[0].compareTo(d)<0) {
-			throw new InvalidDateException("You cannot schedule trips which last more than 30 days.");
-		}
-		
-		Date today = Calendar.getInstance().getTime();
-		if(dateArray[0].compareTo(today)<0) {
-			throw new InvalidDateException("You cannot schedule trips in the past.");
-		}
-		
-		boolean[] atLunchArray = new boolean[2];
-		atLunchArray[0]=atLunch1;
-		atLunchArray[1]=atLunch2;
-		
-		return new BeanRestaurantSchedule(dateArray, atLunchArray, this.city, foodRequirement, doubleBudget, intQuality);	
-		
-	}
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -296,7 +204,7 @@ public class ControllerGuiTripSettings extends UserBaseGuiController {
         	nomeUtenteLabel.setText(this.bs.getUser().getUsername());
         else
         	nomeUtenteLabel.setText("Not logged");
-        errorLabel.setText(this.errorMessage);
+        errorLabel.setText(this.message);
 
         loadDataDays();
         loadDataMonths();

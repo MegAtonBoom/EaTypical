@@ -13,6 +13,21 @@ body {
 	top: 13.14%;
 }
 
+#noCity{	
+	left: 15%;
+	top: 55%;
+	color:red;
+	position: absolute;
+}
+
+#selectCity{	
+	left: 12%;
+	top: 35%;
+	color:white;
+	background-color: rgba(0,0,0,0.7);
+	position: absolute;
+}
+
 .box-2 {
 	width: 42.86%;
 	height: 59.14%;
@@ -193,10 +208,9 @@ body {
 	background-color: rgba(0,0,0,0.7);
 }
 
-p {
-	color: white;
-	font-size: 18px;
-}
+
+
+
 
 #nomeUtente {
 	position: absolute;

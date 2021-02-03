@@ -6,7 +6,7 @@ package logic.controller.guicontroller.ManageMenuGuiController;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,12 +32,12 @@ import logic.engineeringclasses.others.Session;
 public class ControllerGuiModifyDishView  extends OwnerBaseGuiController{
 
 	private String username;
-	private ArrayList<String> obs;
-	private ArrayList<String> obs2;
+	private List<String> obs;
+	private List<String> obs2;
 	private int errorePiatto = -1;
 	private BeanErrorDish beanErrorDish;
 	
-	public ControllerGuiModifyDishView(String username, ArrayList<String> obs,ArrayList<String> obs2,int errorePiatto, BeanErrorDish beanErrorDish,Session bs) {
+	public ControllerGuiModifyDishView(String username, List<String> obs,List<String> obs2,int errorePiatto, BeanErrorDish beanErrorDish,Session bs) {
 		super(bs);
 		this.username = username;
 		this.obs = obs;
@@ -114,19 +114,19 @@ public class ControllerGuiModifyDishView  extends OwnerBaseGuiController{
     	}else {
     		campoMancateContenuto.setText("");
     	}
-    	
-    	if(prezzoString.equals("")) {
-    		campoMancantePrezzo.setText(MANCANTE);
-    		count++;
-    	}else {
-    		campoMancantePrezzo.setText("");
-    	}
     	if(ristorante==null) {
     		campoMancanteRistorante.setText(MANCANTE);
     		count++;
     	}else {
     		campoMancanteRistorante.setText("");
     	}
+    	if(prezzoString.equals("")) {
+    		campoMancantePrezzo.setText(MANCANTE);
+    		count++;
+    	}else {
+    		campoMancantePrezzo.setText("");
+    	}
+    	
     	if(piatto==null) {
     		campoMancantePiatto.setText(MANCANTE);
     		count++;
@@ -143,7 +143,7 @@ public class ControllerGuiModifyDishView  extends OwnerBaseGuiController{
     	//ottengo il nodo radice fxml e vado a settare il controller grafico della nuova GUI
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/ManageRestaurant/ConfirmMessageView.fxml"));
     	BeanAddDish beanAddDish = new BeanAddDish(piatto, ristorante, contenuto, vegano, celiaco, prezzo, 1);
-    	loader.setControllerFactory(c -> {return new ControllerGuiConfirmMessageView(username,beanAddDish,bs);});
+    	loader.setControllerFactory(c -> new ControllerGuiConfirmMessageView(username,beanAddDish,bs));
     	Parent rootParent = loader.load();
     	myAnchorPane.getChildren().setAll(rootParent);
     }
@@ -170,12 +170,10 @@ public class ControllerGuiModifyDishView  extends OwnerBaseGuiController{
         assert errorePiattoLabel != null : "fx:id=\"errorePiattoLabel\" was not injected: check your FXML file 'ModifyDishView.fxml'.";
         
         nomeUtenteLabel.setText(username);
-        //choiseBox.setItems(obs);
         
         for(int i = 0; i<this.obs.size();i++) {
         	choiseBox.getItems().add(this.obs.get(i));
         }
-        //choiseRistoranti.setItems(obs2);
         for(int i = 0; i<this.obs2.size();i++) {
         	choiseRistoranti.getItems().add(this.obs2.get(i));
         }

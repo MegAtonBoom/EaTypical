@@ -2,48 +2,61 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@page import="logic.engineeringclasses.others.SizedStack" %>
+<%@page import="logic.engineeringclasses.others.Session" %>
+<%@page import="logic.engineeringclasses.bean.scheduletrip.BeanOutputSchedule" %>
+
+<%
+	Session bs = (Session)session.getAttribute("session");
+	String city = (String)session.getAttribute("city");
+	BeanOutputSchedule[] scheduling = (BeanOutputSchedule[])session.getAttribute("trip");
+	String errorString = "";
+	String savedScheduling="";
+%>
 
 <%    	
     	if(request.getParameter("Home ST3")!=null) {
-    		SizedStack.getSizedStack(true).clearStack();
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="HomePageTouristView.jsp"/>
 <%
     	}
     	if(request.getParameter("Schedule Trip ST3")!=null) {
-    		SizedStack.getSizedStack(true).push("ItalianViewCity.jsp");
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="ItalianViewCity.jsp"/>
 <%
     	}
     	if(request.getParameter("Choose Restaurant ST3")!=null) {
-    		SizedStack.getSizedStack(true).push("ItalianViewCity2.jsp");
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="ItalianViewCity2.jsp"/>
 <%
     	}
     	if(request.getParameter("Back ST3")!=null) {
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="ItalianViewCity.jsp"/>
 <%    		
     	}
     	if(request.getParameter("Change Settings")!=null) {
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="TripSettingsView.jsp"/>
 <%
     	}
     	if(request.getParameter("Generate New Scheduling")!=null) {
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="SchedulingView.jsp"/>
 <%
     	}
     	if(request.getParameter("Save Scheduling")!=null) {
-    		System.out.println("To do - Save Scheduling");
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="SchedulingView.jsp"/>
 <%
     	}
-%>    
+%>
     
 <!DOCTYPE html>
 <html lang="en">
@@ -64,8 +77,10 @@
 		<input id="chooseRestaurant" type="submit" name="Choose Restaurant ST3" value="Choose Restaurant">
 		<input id="back" type="submit" name="Back ST3" value="Back">
 		<img id="fotoUtente" src="utente.jpg" alt="Photo"/>
-		<label id="nomeUtente">nomeUtente</label>
-		<label id="citta">Città</label>
+		<label id="nomeUtente"><%=bs.getUser().getUsername()%></label>
+		<label id="citta"><%=city%></label>		
+		<label id="errorMsg"><%=errorString%></label>
+		<label id="savedMsg"><%=savedScheduling%></label>
 		
 		<input id="changeSettings" class="buttonBelow" type="submit" name="Change Settings" value="Change Settings">
 		<input id="generateNewScheduling" class="buttonBelow" type="submit" name="Generate New Scheduling" value="Generate New Scheduling">

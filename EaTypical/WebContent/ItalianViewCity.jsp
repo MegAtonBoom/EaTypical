@@ -2,42 +2,48 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@page import="logic.engineeringclasses.others.SizedStack" %>
+<%@page import="logic.engineeringclasses.others.Session" %>
+<%@page import="logic.engineeringclasses.exceptions.EmptyFieldException" %>
+
+<%
+	Session bs = (Session)session.getAttribute("session");
+	String errorString = "";
+%>
 
 <%    	
     	if(request.getParameter("Home ST1")!=null) {
-    		SizedStack.getSizedStack(true).clearStack();
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="HomePageTouristView.jsp"/>
 <%
     	}
     	if(request.getParameter("Choose Restaurant ST1")!=null) {
-    		SizedStack.getSizedStack(true).push("ItalianViewCity2.jsp");
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="ItalianViewCity2.jsp"/>
 <%
     	}
     	if(request.getParameter("Back ST1")!=null) {
-    		String pag = SizedStack.getSizedStack(true).pop();
-    		if(pag=="ItalianViewCity.jsp") {
+    		session.setAttribute("session", bs);
 %>
-				<jsp:forward page="ItalianViewCity.jsp"/>
-<%
-    		}
-			else if(pag=="ItalianViewCity2.jsp") {
-%>
-				<jsp:forward page="ItalianViewCity2.jsp"/>
-<%
-			}
-			else {
-%>
-				<jsp:forward page="HomePageTouristView.jsp"/>
-<%
-			}
+			<jsp:forward page="HomePageTouristView.jsp"/>
+<%		
     	}
     	if(request.getParameter("Continue")!=null) {
+    		try {	
+    			String city = request.getParameter("Scroll");
+        		if(city.equals("")) {
+    				throw new EmptyFieldException("There is no city selected.");
+        		}
+    			session.setAttribute("session", bs);
+    			session.setAttribute("city", city);
 %>
-			<jsp:forward page="TripSettingsView.jsp"/>
+				<jsp:forward page="TripSettingsView.jsp"/>
 <%
+    		}
+    		catch(EmptyFieldException e) {
+    			errorString = "There is no city selected.";
+    		}
     	}
 %>    
     	
@@ -60,7 +66,7 @@
 		<input id="chooseRestaurant" type="submit" name="Choose Restaurant ST1" value="Choose Restaurant">
 		<input id="back" type="submit" name="Back ST1" value="Back">
 		<img id="fotoUtente" src="utente.jpg" alt="Photo"/>
-		<label id="nomeUtente">nomeUtente</label>
+		<label id="nomeUtente"><%=bs.getUser().getUsername()%></label>
 		<div class="box-1">
 			<p>Click on the map or select a city from the drop-down menu:</p>
 		</div>
@@ -113,6 +119,7 @@
 			<img id="CG_img" class="city" src="placeicon.png" alt=".">
 		</div>
 		
+		<label id="errorMsg"><%=errorString%></label>
 		<input id="continue" type="submit" name="Continue" value="Continue">
 	</form>
 </div>

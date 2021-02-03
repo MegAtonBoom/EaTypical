@@ -1,7 +1,5 @@
 package logic.engineeringclasses.bean.scheduletrip;
 
-import javafx.scene.control.Button;
-
 public class ConvertedBeanSchedule {
 
 	private String strDate;
@@ -12,26 +10,8 @@ public class ConvertedBeanSchedule {
 	private String city;
 	private String strAvgPrice;
 	private String strAvgVote;
-	private Button button;
-	
-	public ConvertedBeanSchedule(String[] dateAndHour, String[] restInfo, String strAvgPrice, String strAvgVote, String buttonName) {
-		setAttributes(dateAndHour, restInfo, strAvgPrice, strAvgVote);
-		
-		if(buttonName!=null) {
-			this.button = new Button(buttonName);
-		}
-		else {
-			this.button=null;
-		}
-		
-	}
 	
 	public ConvertedBeanSchedule(String[] dateAndHour, String[] restInfo, String strAvgPrice, String strAvgVote) {
-		setAttributes(dateAndHour, restInfo, strAvgPrice, strAvgVote);
-		this.button=null;
-	}
-	
-	private void setAttributes(String[] dateAndHour, String[] restInfo, String strAvgPrice, String strAvgVote) {
 		this.strDate=dateAndHour[0];
 		this.strHour=dateAndHour[1];
 		this.usernameOwner=restInfo[0];
@@ -40,7 +20,6 @@ public class ConvertedBeanSchedule {
 		this.city=restInfo[3];
 		this.strAvgPrice=strAvgPrice;
 		this.strAvgVote=strAvgVote;
-		
 	}
 	
 	/**
@@ -154,21 +133,5 @@ public class ConvertedBeanSchedule {
 	public void setStrAvgVote(String strAvgVote) {
 		this.strAvgVote = strAvgVote;
 	}
-
-	/**
-	 * @return the button
-	 */
-	public Button getButton() {
-		return button;
-	}
-
-	/**
-	 * @param button the button to set
-	 */
-	public void setButton(Button button) {
-		this.button = button;
-	}
-	
-	
 	
 }

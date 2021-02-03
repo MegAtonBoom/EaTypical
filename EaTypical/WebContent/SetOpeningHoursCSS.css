@@ -199,3 +199,12 @@ body {
 	left: 42.43%;
 	top: 82.14%;
 }
+
+#savedMsg {
+	position: absolute;
+	left: 10%;
+	top: 84.29%;
+	color: green;
+	font-size: 11px;
+	background-color: rgba(0,0,0,0.7);
+}

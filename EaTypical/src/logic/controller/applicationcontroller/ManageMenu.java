@@ -52,11 +52,11 @@ public class ManageMenu {
 	
 	public BeanAdvice advice(String username) throws ClassNotFoundException {
 		
-		// istanzio la DAO affinchè possa ottenere i piatti tipici che il ristorante non offre ai clienti
+		// istanzio la DAO affinchÃ¨ possa ottenere i piatti tipici che il ristorante non offre ai clienti
 		RecipeDAO recipeDAO = new RecipeDAO();
-		ArrayList<String> piattiMancanti = recipeDAO.selectNoRecipe(username);
+		ArrayList<String> piattiMancanti = (ArrayList<String>) recipeDAO.selectNoRecipe(username);
 		
-		//impacchetto i piatti 'mancanti' all'interno di una Bean che verrà passata al controller grafico chiamante
+		//impacchetto i piatti 'mancanti' all'interno di una Bean che verrÃ  passata al controller grafico chiamante
 		new BeanAdvice(piattiMancanti);
 		
 		

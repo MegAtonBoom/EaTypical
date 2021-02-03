@@ -93,6 +93,7 @@ public class ControllerGuiRestaurantView extends UserBaseGuiController{
    	{
    		super(bs);
    		ChooseRestaurant cr=new ChooseRestaurant();
+   		try {
    		ChooseRestaurantBean cb=cr.getallRestaurants(city);
    		this.allRestaurants=cb.getAllRestaurants();
    		this.celiacRestaurants=cb.getCeliacRestaurants();
@@ -102,14 +103,26 @@ public class ControllerGuiRestaurantView extends UserBaseGuiController{
    		setVeganNames();
    		setCeliacNames();
    		setBothNames();
+   		}
+   		catch(Exception e)
+   		{
+   			setGenericError("Please try again");
+   		}
+
    	}
+    
+    private void setGenericError(String m)
+    {
+    	this.genericError.setText(m);
+    	this.genericError.setVisible(true);
+    }
     
     
 
     @FXML
     void goToReadreviewsPage() throws IOException {		//TO DO
     	boolean restChosen=restChoice.getSelectionModel().isEmpty();
-    	if(restChosen)
+    	if(!restChosen)
     	{
     		String restaurant = restChoice.getSelectionModel().getSelectedItem();
 	    	FXMLLoader loader=new FXMLLoader(getClass().getResource(this.readReviewsPage));
@@ -265,7 +278,7 @@ public class ControllerGuiRestaurantView extends UserBaseGuiController{
 	
 	private boolean isLogged()
 	{
-		return (this.bs.getUser()==null);
+		return (this.bs.getUser()!=null);
 	}
 	
     @FXML 

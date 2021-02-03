@@ -45,7 +45,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="okButton" layoutX="297.0" layoutY="573.0" mnemonicParsing="false" onAction="#setOpeningHours" prefHeight="51.0" prefWidth="106.0" text="OK">
+      <Button fx:id="okButton" layoutX="297.0" layoutY="573.0" mnemonicParsing="false" onAction="#saveRestaurant" prefHeight="51.0" prefWidth="106.0" text="OK">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Button>
@@ -119,5 +119,10 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </CheckBox>
+      <Label fx:id="savedLabel" layoutX="30.0" layoutY="582.0" opacity="0.9" style="-fx-background-color: black;" textFill="#34ff74">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

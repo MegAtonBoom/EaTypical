@@ -6,7 +6,8 @@ import java.sql.Statement;
 
 public class QueryReview {
 	
-
+	private QueryReview(){};
+	
 	public static ResultSet selectReviews(Statement stmt, String restaurantName) throws SQLException
 	{
 		String sql = "SELECT * FROM Recensione WHERE NomeRistorante = '"+ restaurantName + "';";

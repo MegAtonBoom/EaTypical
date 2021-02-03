@@ -7,7 +7,7 @@ package logic.controller.guicontroller.ScheduleTrip;
 import logic.controller.applicationcontroller.ScheduleTrip;
 import logic.controller.guicontroller.SchedulingBaseGuiController;
 import logic.engineeringclasses.bean.scheduletrip.BeanOutputSchedule;
-import logic.engineeringclasses.bean.scheduletrip.ConvertedBeanSchedule;
+import logic.engineeringclasses.others.BeanConverter;
 import logic.engineeringclasses.others.Session;
 import java.io.IOException;
 import java.net.URL;
@@ -18,7 +18,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class ControllerGuiScheduling extends SchedulingBaseGuiController {
 	
@@ -28,18 +27,14 @@ public class ControllerGuiScheduling extends SchedulingBaseGuiController {
 	
 	public ControllerGuiScheduling(String city, BeanOutputSchedule[] scheduling, Session bs) {
 		super(bs);
-		this.thereIsButton=false;
 		this.city=city;
 		this.scheduling=scheduling;
-		this.convertedScheduling = convertDataType(this.thereIsButton);
 	}
 	
 	public ControllerGuiScheduling(String city, BeanOutputSchedule[] scheduling, String errorMessage, Session bs) {
 		super(bs);
-		this.thereIsButton=false;
 		this.city=city;
 		this.scheduling=scheduling;
-		this.convertedScheduling = convertDataType(this.thereIsButton);
 		this.errorMessage=errorMessage;
 	}
 
@@ -116,6 +111,9 @@ public class ControllerGuiScheduling extends SchedulingBaseGuiController {
         assert errorLabel != null : "fx:id=\"errorLabel\" was not injected: check your FXML file 'SchedulingView.fxml'.";
         assert savedLabel != null : "fx:id=\"savedLabel\" was not injected: check your FXML file 'SchedulingView.fxml'.";
         
+        BeanConverter converter = new BeanConverter();
+        this.convertedScheduling = converter.convertDataType(this.scheduling, this.city);
+        
         if(this.bs.getUser()!=null)
         	nomeUtenteLabel.setText(this.bs.getUser().getUsername());
         else
@@ -123,9 +121,7 @@ public class ControllerGuiScheduling extends SchedulingBaseGuiController {
         cittaLabel.setText(this.city);
         errorLabel.setText(this.errorMessage);
         
-        commonInitializeOperations();
-        nameColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("name"));
-        
+        commonInitializeOperations();        
         tabella.setItems(ol);
         
     }

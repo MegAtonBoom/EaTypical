@@ -70,3 +70,12 @@ body {
 	left: 28.57%;
 	top: 85.71%;
 }
+
+#errorMsg {
+	position: absolute;
+	left: 4.29%;
+	top: 80.29%;
+	color: red;
+	font-size: 11px;
+	background-color: rgba(0,0,0,0.7);
+}

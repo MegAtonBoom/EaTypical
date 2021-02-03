@@ -42,25 +42,34 @@ p {
 	width: 40%;
 	height: 8.57%;
 	position: absolute;
-	left: 30%;
 }
 
 #chooseRestaurant {
-	top: 29.14%;
+	left: 7.14%;
+	top: 37.14%;
 }
 
 #scheduleTrip {
-	top: 42%;
+	left: 7.14%;
+	top: 52.86%;
 }
 
 #seeFavRestaurants {
-	top: 54.86%;
+	left: 52.86%;
+	top: 37.14%;
 }
 
 #seeTrip {
-	top: 67.71%;
+	left: 52.86%;
+	top: 52.86%;
 }
 
 #logout {
-	top: 80.57%;
+	left: 7.14%;
+	top: 68.57%;
+}
+
+#seeNotifications {
+	left: 52.86%;
+	top: 68.57%;
 }

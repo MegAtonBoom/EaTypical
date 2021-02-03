@@ -1,21 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
+    
+ <%@page import="logic.controller.applicationcontroller.WriteReview" %>   
+ <%@page import="logic.engineeringclasses.bean.chooserestaurant.BeanNewReview" %>  
+ <%@page import="logic.engineeringclasses.exceptions.EmptyReviewFieldException" %> 
+ <%@page import="logic.engineeringclasses.exceptions.GenericException" %>
+  
+  
+    
+ <%@page import="logic.engineeringclasses.others.Session" %>
+ <%Session bs;
+ bs=(Session)session.getAttribute("session"); 
+ String restaurant=(String)session.getAttribute("restaurant");
+ boolean emptyReview=false;
+ boolean genericError=false;
+ boolean success=false;
+%>
+ <%
+ 		boolean emptyText=false;
+ %>   
 <%    	
     	if(request.getParameter("Home ww")!=null) {
-    		//SizedStack.getSizedStack(true).push("HomePageTouristView.jsp");
-    		//SizedStack.getSizedStack(true).clearStack();
 %>
 			<jsp:forward page="HomePageTouristView.jsp"/>
 <%
     	}
     	if(request.getParameter("Choose Restaurant ww")!=null) {
-    		//SizedStack.getSizedStack(true).push("ItalianViewCity2.jsp");
+
 %>
 			<jsp:forward page="ItalianViewCity2.jsp"/>
 <%
     	}
     	if(request.getParameter("Schedule Trip ww")!=null) {
-    		//SizedStack.getSizedStack(true).push("ItalianViewCity2.jsp");
+
 %>
 			<jsp:forward page="ItalianViewCity.jsp"/>
 <%
@@ -28,9 +46,32 @@
 			
     	}
     	if(request.getParameter("Submit Review ww")!=null) {
-    		//SizedStack.getSizedStack(true).push("TripSettingsView.jsp");
+    		
+    		System.out.println("lunghezza: "+request.getParameter("Write Review").length());
+    		try
+        	{   		    	
+    	    	BeanNewReview bnr= new BeanNewReview();
+    	    	bnr.setContent(request.getParameter("Write Review"));
+    			bnr.setUsername(bs.getUser().getUsername());
+    			String vote=request.getParameter("voteScroll");
+    			bnr.setVote(vote);
+    			bnr.setRestaurant(restaurant);
+    	    	WriteReview wr= new WriteReview();
+    	    	wr.write(bnr);
+    	    	success=true;
+        	}
+    		catch (EmptyReviewFieldException e) 
+        	{
+    			emptyReview=true;
+    		} 
+        	catch (GenericException e) 
+        	{
+    			genericError=true;
+    		} catch (Exception e) {
+    			genericError=true;
+    		}
 %>
-			<!--<jsp:forward page="RestaurantView.jsp"/> TO DO-->
+
 <%
     	}
 %> 
@@ -50,25 +91,39 @@
 			<input id="back" class="button" type="submit" name="Back ww" value="Back">
 			<input id="submitReview" class="button" type="submit" name="Submit Review ww" value="Submit Review">
 			<img id="fotoUtente" src="utente.jpg"/>
-			<label id="nomeUtente">nomeUtente</label>
+			<label id="nomeUtente"><%if(bs!=null&&bs.getUser()!=null){
+					%>=bs.getUser().getUsername()<%
+		}
+		else{
+		%>not logged<%		}	%></label>
 			
-			<input type="radio" id="one" name="rating" value="onestar">
-				<label for="one" id="onel" class="ratingl">1 star</label>
+			<% if(genericError){
+				%><label id="genericError">please try again!</label><%
+			}
 				
-			<input type="radio" id="two" name="rating" value="twostars">
-				<label for="two" id="twol" class="ratingl">2 stars</label>
+			%>
+			
+			<% if(emptyReview){
+				%><label id="emptyReview">Your review can't be empty!</label><%
+			}
 				
-			<input type="radio" id="three" name="rating" value="threestars">
-				<label for="three" id="threel" class="ratingl">3 stars</label>
+			%>
+			
+			<% if(success){
+				%><label id="sucessLabel">Review successfully saved</label><%
+			}
 				
-			<input type="radio" id="four" name="rating" value="fourstars">
-				<label for="four" id="fourl" class="ratingl">4 stars</label>
+			%>
+			
+			<select id="voteScroll" name="voteScroll">
+			<option value="1">1 star</option>
+			<option value="2">2 stars</option>
+			<option selected="selected" value="3">3 stars</option>
+			<option value="4">4 stars</option>
+			<option value="5">5 stars</option>
+			</select>
 				
-			<input type="radio" id="five" name="rating" value="fivestars">
-				<label for="five" id="fivel" class="ratingl">5 stars</label>
-				
-			<textarea id="writeReview" name="Write Review" rows="12">Write here your review...
- 			</textarea>
+			<textarea id="writeReview" name="Write Review" rows="12"></textarea>
 		</form>
 	</div>
 

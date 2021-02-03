@@ -1,0 +1,171 @@
+@charset "ISO-8859-1";
+
+body {
+	background: url(sfondo_riadattato.jpg);
+	background-size: cover;
+}
+
+.button{
+	font-weight:bold;
+}
+
+#fotoUtente {
+	width: 10.29%;
+	height: 7.29%;
+	position: absolute;
+	left: 85.43%;
+	top: 13.14%;
+}
+
+#home {
+	width: 20%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 4.71%;
+}
+
+#scheduleTrip {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 27.14%;
+	top: 4.71%;
+}
+
+#chooseRestaurant {
+	width: 32.86%;
+	height: 6.43%;
+	position: absolute;
+	left: 62.86%;
+	top: 4.71%;
+}
+
+#back {
+	width: 9.29%;
+	height: 6.43%;
+	position: absolute;
+	left: 4.29%;
+	top: 13.14%;
+}
+
+#genericError{
+	left: 40%;
+	top: 26%;
+	color: red;
+	position: absolute;
+}
+
+#invalidUser{
+	left: 40%;
+	top: 20%;
+	color: red;
+	position: absolute;
+}
+
+#emptyData{
+	left: 40%;
+	top: 60%;
+	color: red;
+	position: absolute;
+}
+
+#name{
+	left: 35%;
+	top: 30%;
+	color: white;
+	position: absolute;
+}
+
+#surname{
+	left: 35%;
+	top: 38%;
+	color: white;
+	position: absolute;
+}
+
+#user{
+	left: 35%;
+	top: 46%;
+	color: white;
+	position: absolute;
+}
+
+#pw{
+	left: 35%;
+	top: 54%;
+	color: white;
+	position: absolute;
+}
+
+#nametx{
+	top: 30%;
+	left: 50%;
+	position:absolute;
+}
+
+#surnametx{
+	top: 38%;
+	left: 50%;
+	position:absolute;
+}
+
+
+#usernametx{
+	top: 46%;
+	left: 50%;
+	position:absolute;
+}
+
+
+
+#passtx{
+	left: 50%;
+	top: 54%;
+	position: absolute;
+}
+
+
+
+#ownercb{
+	left: 40%;
+	top: 65%;
+	position: absolute;
+}
+
+#owner{
+	left: 45%;
+	top: 65%;
+	color: white;
+	position: absolute;
+}
+
+#login{
+	width: 10%;
+	height: 5%;
+	left: 25%;
+	top: 75%;
+	position: absolute;
+}
+
+
+#register{
+	left: 38%;
+	top: 88%;
+	position: absolute;
+}
+
+#registerfb{
+	left: 45%;
+	top: 88%;
+	position: absolute;
+}
+
+#nomeUtente {
+	position: absolute;
+	left: 85.43%;
+	top: 20.43%;
+	color: white;
+	font-size: 16px;
+	background-color: rgba(0,0,0,0.7);
+}

@@ -9,11 +9,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.cell.PropertyValueFactory;
 import logic.controller.guicontroller.SchedulingBaseGuiController;
 import logic.engineeringclasses.bean.scheduletrip.BeanOutputSchedule;
-import logic.engineeringclasses.bean.scheduletrip.ConvertedBeanSchedule;
 import logic.engineeringclasses.dao.SchedulingDAO;
+import logic.engineeringclasses.others.BeanConverter;
 import logic.engineeringclasses.others.Session;
 
 public class ControllerGuiSeeTrip extends SchedulingBaseGuiController {
@@ -24,16 +23,6 @@ public class ControllerGuiSeeTrip extends SchedulingBaseGuiController {
 		super(bs);
 		this.city=city;
 		this.scheduling=scheduling;
-		
-		if(scheduling!=null) {
-			this.thereIsButton=true;
-			this.convertedScheduling = convertDataType(this.thereIsButton);
-		}
-		else {
-			this.thereIsButton=false;
-			this.convertedScheduling = emptyScheduling();
-		}
-		
 	}
 	
 	public ControllerGuiSeeTrip(String city, BeanOutputSchedule[] scheduling, String errorMessage, Session bs) {
@@ -41,16 +30,6 @@ public class ControllerGuiSeeTrip extends SchedulingBaseGuiController {
 		this.city=city;
 		this.scheduling=scheduling;
 		this.errorMessage=errorMessage;
-		
-		if(scheduling!=null) {
-			this.thereIsButton=true;
-			this.convertedScheduling = convertDataType(this.thereIsButton);
-		}
-		else {
-			this.thereIsButton=false;
-			this.convertedScheduling = emptyScheduling();
-		}
-		
 	}
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -94,6 +73,14 @@ public class ControllerGuiSeeTrip extends SchedulingBaseGuiController {
         assert errorLabel != null : "fx:id=\"errorLabel\" was not injected: check your FXML file 'SchedulingView.fxml'.";
         assert deleteSchedulingButton != null : "fx:id=\"deleteSchedulingButton\" was not injected: check your FXML file 'SeeTripView.fxml'.";
         
+        BeanConverter converter = new BeanConverter();
+		if(scheduling!=null) {
+			this.convertedScheduling = converter.convertDataType(this.scheduling, this.city);
+		}
+		else {
+			this.convertedScheduling = converter.emptyScheduling();
+		}
+        
         if(this.bs.getUser()!=null)
         	nomeUtenteLabel.setText(this.bs.getUser().getUsername());
         else
@@ -102,33 +89,9 @@ public class ControllerGuiSeeTrip extends SchedulingBaseGuiController {
         cittaLabel.setText(this.city);
         errorLabel.setText(this.errorMessage);
         
-        commonInitializeOperations();
-        
-        if(this.thereIsButton)
-        	nameColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("button"));
-        else
-        	nameColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("name"));
-        
+        commonInitializeOperations();      
         tabella.setItems(ol);
         
-    }
-    
-    private ConvertedBeanSchedule[] emptyScheduling() {
-    	ConvertedBeanSchedule[] convertedScheduling = new ConvertedBeanSchedule[1];
-    	
-    	String[] dateAndHour = new String[2];
-    	for(int i=0; i<2; i++) {
-    		dateAndHour[i] = "";
-    	}
-    	
-    	String[] restInfo = new String[4];
-    	restInfo[0]="";
-    	restInfo[1]="There is no scheduling";
-    	restInfo[2]="";
-    	restInfo[3]="";
-    	
-    	convertedScheduling[0] = new ConvertedBeanSchedule(dateAndHour, restInfo, "", "");
-    	return convertedScheduling;
     }
 	
 }

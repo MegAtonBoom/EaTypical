@@ -1,15 +1,17 @@
 package logic.controller.applicationcontroller;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import logic.engineeringclasses.adapter.ChooseSpecificRestaurants;
 import logic.engineeringclasses.adapter.ScheduleTripAdapter;
 import logic.engineeringclasses.bean.chooserestaurant.ChooseRestaurantBean;
+import logic.engineeringclasses.exceptions.NoResultException;
 import logic.model.Restaurant;
 
 public class ChooseRestaurant {
 
-	public ChooseRestaurantBean getallRestaurants(String city)
+	public ChooseRestaurantBean getallRestaurants(String city) throws ClassNotFoundException, NoResultException, SQLException
 	{
 		ChooseRestaurantBean crb= new ChooseRestaurantBean();
 		ScheduleTrip st=new ScheduleTrip();

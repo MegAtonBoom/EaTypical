@@ -4,16 +4,31 @@
 
 package logic.controller.guicontroller.SponsorRestaurant;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
+import logic.controller.applicationcontroller.SponsorRestaurant;
 import logic.controller.guicontroller.UserBaseGuiController;
+import logic.engineeringclasses.bean.sponsorrestaurant.BeanNewRestaurant;
+import logic.engineeringclasses.exceptions.AlreadyInUseRestaurantNameException;
+import logic.engineeringclasses.others.Session;
 
 public class ControllerGuiSetOpeningHours extends UserBaseGuiController {
+	private BeanNewRestaurant bnr;
+	private String savedMessage = "Restaurant saved successfully.";
+	private String creatingRestPage = "/logic/view/standalone/SponsorRestaurant/CreatingRestaurantView.fxml";
+	
+	public ControllerGuiSetOpeningHours(BeanNewRestaurant bnr, Session bs) {
+		super(bs);
+		this.bnr=bnr;
+	}
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -69,9 +84,48 @@ public class ControllerGuiSetOpeningHours extends UserBaseGuiController {
     @FXML // fx:id="saturdayDinner"
     private CheckBox saturdayDinner; // Value injected by FXMLLoader
 
+    @FXML // fx:id="savedLabel"
+    private Label savedLabel; // Value injected by FXMLLoader
+
     @FXML
-    void setOpeningHours(ActionEvent event) {
-    	// To do
+    void saveRestaurant(ActionEvent event) throws IOException {
+    	try {
+    		boolean[][] openingHours = new boolean[7][2];
+    	
+    		openingHours[0][0] = sundayLunch.isSelected();
+    		openingHours[0][1] = sundayDinner.isSelected();
+    		openingHours[1][0] = mondayLunch.isSelected();
+    		openingHours[1][1] = mondayDinner.isSelected();
+    		openingHours[2][0] = tuesdayLunch.isSelected();
+    		openingHours[2][1] = tuesdayDinner.isSelected();
+    		openingHours[3][0] = wednesdayLunch.isSelected();
+    		openingHours[3][1] = wednesdayDinner.isSelected();
+    		openingHours[4][0] = thursdayLunch.isSelected();
+    		openingHours[4][1] = thursdayDinner.isSelected();
+    		openingHours[5][0] = fridayLunch.isSelected();
+    		openingHours[5][1] = fridayDinner.isSelected();
+    		openingHours[6][0] = saturdayLunch.isSelected();
+    		openingHours[6][1] = saturdayDinner.isSelected();
+    	
+    		bnr.setOpeningHours(openingHours);
+    		SponsorRestaurant sponsorRest = new SponsorRestaurant();
+    		sponsorRest.saveRestaurant(this.bnr);;
+    		savedLabel.setText(this.savedMessage);
+    	}
+    	
+    	catch(AlreadyInUseRestaurantNameException e) {
+    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.creatingRestPage));
+    		loader.setControllerFactory(c -> new ControllerGuiCreatingRestaurant("This restaurant has already been sponsored.", bs));
+    		Parent root=loader.load();
+    		myAnchorPane.getChildren().setAll(root);    
+    	}
+    	catch(Exception e) {
+    		FXMLLoader loader=new FXMLLoader(getClass().getResource(this.creatingRestPage));
+    		loader.setControllerFactory(c -> new ControllerGuiCreatingRestaurant("An unknown error occurred. Please, try again later.", bs));
+    		Parent root=loader.load();
+    		myAnchorPane.getChildren().setAll(root);
+    	}
+    	;
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
@@ -92,6 +146,7 @@ public class ControllerGuiSetOpeningHours extends UserBaseGuiController {
         assert thursdayDinner != null : "fx:id=\"thursdayDinner\" was not injected: check your FXML file 'SetOpeningHoursView.fxml'.";
         assert fridayDinner != null : "fx:id=\"fridayDinner\" was not injected: check your FXML file 'SetOpeningHoursView.fxml'.";
         assert saturdayDinner != null : "fx:id=\"saturdayDinner\" was not injected: check your FXML file 'SetOpeningHoursView.fxml'.";
-
+        assert savedLabel != null : "fx:id=\"savedLabel\" was not injected: check your FXML file 'SetOpeningHoursView.fxml'.";
+        
     }
 }

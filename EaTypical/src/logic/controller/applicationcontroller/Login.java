@@ -41,6 +41,7 @@ public class Login {
 		}
 		catch(SQLException e)				//generic exception to handle that may occour if there is a bug or some not planned interaction
 		{
+			e.printStackTrace();
 			throw new SQLException("Please try again!");
 		}
 		return user;
@@ -57,7 +58,7 @@ public class Login {
 		{
 			if(loggingUser.isOwner())
 			{
-				User newOwner=new Owner(name, surname, null, username, null, null);
+				User newOwner=new Owner(name, surname,username);
 				OwnerDAO.insertOwner(newOwner, password);			
 			}
 			else {

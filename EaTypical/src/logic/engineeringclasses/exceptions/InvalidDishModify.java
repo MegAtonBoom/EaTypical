@@ -1,6 +1,6 @@
 package logic.engineeringclasses.exceptions;
 
-import logic.engineeringclasses.bean.manageMenu.BeanAddDish;
+
 import logic.engineeringclasses.bean.manageMenu.BeanErrorDish;
 
 /**
@@ -33,3 +33,4 @@ public class InvalidDishModify extends Exception {
 	
 
 }
+

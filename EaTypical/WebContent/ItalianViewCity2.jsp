@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 
+
+<%@page import="logic.engineeringclasses.others.Session" %>
+ <%Session bs;
+  bs=(Session)session.getAttribute("session"); %>
+
+
+<% boolean notSelectedCity=false; %>
 <%    	
     	if(request.getParameter("Home ivc2")!=null) {
-    		//SizedStack.getSizedStack(true).push("HomePageTouristView.jsp");
-    		//SizedStack.getSizedStack(true).clearStack();
 %> 
 			<jsp:forward page="HomePageTouristView.jsp"/>
 <%
     	}
     	if(request.getParameter("Schedule Trip ivc2")!=null) {
-    		//SizedStack.getSizedStack(true).push("ItalianViewCity2.jsp");
 %>
 			<jsp:forward page="ItalianViewCity.jsp"/>
 <%
@@ -24,10 +28,58 @@
 			
     	}
     	if(request.getParameter("Continue ivc2")!=null) {
-    		//SizedStack.getSizedStack(true).push("TripSettingsView.jsp");
-%>
-			<jsp:forward page="RestaurantView.jsp"/>
-<%
+    		String city=request.getParameter("Scroll");    		
+    		if(city!=null)
+    		{
+    			if(city.equals("AO"))
+    				city="Aosta";
+    			else if(city.equals("TO")){
+    				city="Torino";}
+    			else if(city.equals("GE")){
+    				city="Genova";}
+    			else if(city.equals("MI")){
+    				city="Milano";}
+    			else if(city.equals("TN")){
+    				city="Trento";}
+    			else if(city.equals("VE")){
+    				city="Venezia";}
+    			else if(city.equals("TR")){
+    				city="trento";}
+    			else if(city.equals("BO")){
+    				city="Bologna";}
+    			else if(city.equals("FI")){
+    				city="Firenze";}
+    			else if(city.equals("AN")){
+    				city="Ancona";}
+    			else if(city.equals("PG")){
+    				city="Perugia";}
+    			else if(city.equals("RM")){
+    				city="Roma";}
+    			else if(city.equals("AQ")){
+    				city="L'Aquila";}
+    			else if(city.equals("CB")){
+    				city="Campobasso";}
+    			else if(city.equals("NA")){
+    				city="Napoli";}
+    			else if(city.equals("PZ")){
+    				city="Potenza";}
+    			else if(city.equals("BA")){
+    				city="Bari";}
+    			else if(city.equals("CZ")){
+    				city="Catanzaro";}
+    			else if(city.equals("PA")){
+    				city="Palermo";}
+    			else{
+    				city="Cagliari";}
+    			
+    			session.setAttribute("citta",city);
+    			%>
+    				 <jsp:forward page="RestaurantView.jsp"/> 
+    			<%
+    		}
+    		else{
+    			notSelectedCity=true;
+    		}     		    		   		     		
     	}
 %>    
 
@@ -44,6 +96,7 @@
 </head>
 
 <body>
+
 <div class="container">
 	<form action="ItalianViewCity2.jsp" name="myform" method="get">
 		<input id="home" type="submit" name="Home ivc2" value="Home">
@@ -51,10 +104,15 @@
 		<input id="chooseRestaurant" type="submit" name="Choose Restaurant ivc2" value="Choose Restaurant" disabled>
 		<input id="back" type="submit" name="Back ivc2" value="Back">
 		<img id="fotoUtente" src="utente.jpg"/>
-		<label id="nomeUtente">nomeUtente</label>
-		<div class="box-1">
-			<p>Click on the map or select a city from the drop-down menu:</p>
-		</div>
+		
+		<label id="nomeUtente"><%if(bs!=null&&bs.getUser()!=null){
+					%>=bs.getUser().getUsername()<%
+		}
+		else{
+		%>not logged<%		}	%></label>
+		<label id="selectCity">Click on the map or select a city from the drop-down menu:</label>
+		
+		
 		<select id="scrollbar" name="Scroll">
 			<option disabled selected>City</option>
 			<option value="AO">Aosta</option>
@@ -78,6 +136,10 @@
 			<option value="PA">Palermo</option>
 			<option value="CG">Cagliari</option>
 		</select>
+		
+		
+		
+		
 		
 		<div class="box-2">
 			<img id="fotoItalia" src="Cartina.jpg"/>
@@ -103,6 +165,11 @@
 			<img id="CG_img" class="city"  name="Cagliari"  src="placeicon.png">		
 
 		</div>
+		
+		<% if(notSelectedCity){
+			
+			%><label id="noCity">You must select a city!</label><%
+		}%>
 		
 		<input id="continue" type="submit" name="Continue ivc2" value="Continue">
 	</form>

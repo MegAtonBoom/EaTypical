@@ -23,7 +23,7 @@ public class BeanNewReview {
 	}
 
 	public void setContent(String content) throws EmptyReviewFieldException {
-		if(content==null)
+		if(content==null||content.equals(""))
 			throw new EmptyReviewFieldException("You didn't write anything.");
 		else
 			this.content = content;

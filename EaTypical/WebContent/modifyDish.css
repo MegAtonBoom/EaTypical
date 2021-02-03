@@ -1,13 +1,5 @@
 @charset "ISO-8859-1";
 
-#fotoUtente {
-	width: 12.29%;
-	height: 11.29%;
-	position: absolute;
-	left: 83.43%;
-	top: 13.14%;
-}
-
 #price {
 	top: 60%;
 	position:absolute;
@@ -91,14 +83,6 @@ p {
 	color:white;
 }
 
-#nomeUtente {
-	position: absolute;
-	left: 84.43%;
-	top: 25.43%;
-	color: white;
-	font-size: 11px;
-	background-color: rgba(0,0,0,0.7);
-}
 
 #informazioni {
 	width: 32.86%;

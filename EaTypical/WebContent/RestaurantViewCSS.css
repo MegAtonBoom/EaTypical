@@ -49,34 +49,13 @@ body {
 	top: 13.14%;
 	cursor: pointer;
 }
-#restName{
-	top:30%;
-	left:16%;
-	font-size:150%;
-	position:absolute;
-	color: white;
-}
-#addrName{
-	top:30%;
-	left:55%;
-	font-size:150%;
-	position:absolute;
-	color:white;
-}
-#checkboxes{
-	top: 22%;
-	left: 20%;	
-  	width: 50%;
-  	position:absolute;
-  	background-color:white;
-  	color: black;  	
-}
+
 
 #saveFavourite {
 	width:24.5%;
 	height: 6.43%;
 	left: 4.29%;
-	top: 80.4%;
+	top: 80%;
 	position: absolute;
 }
 
@@ -84,7 +63,7 @@ body {
 	width: 24.5%;
 	height: 6.63%;
 	left: 37.53%;
-	top: 80.4%;
+	top: 80%;
 	position: absolute;
 }
 
@@ -92,23 +71,105 @@ body {
 	width: 24.5%;
 	height: 6.63%;
 	left: 69.53%;
-	top: 80.4%;
+	top: 80%;
 	position: absolute;
 }
 
-table, td, th{
-	background-color: white;
-	border: 1px solid black;
-    border-collapse: collapse;
+#celFilter {
+	left: 33%;
+	top: 20%;
+	position: absolute;
 }
 
-#table1{
-	
-	width: 70%;
-	top:36.2%;
-	left:8.50%;
+#fcel {
+	left: 37%;
+	top: 20%;
+	color:white;
 	position: absolute;
-	cursor: pointer;
+}
+
+#vegFilter {
+	left: 50%;
+	top: 20%;
+	color: white;
+	position: absolute;
+}
+
+#fveg {
+	left: 54%;
+	top: 20%;
+		color:white;
+	position: absolute;
+}
+
+#restaurantsScroll {
+	left: 15%;
+	top: 50%;
+	position: absolute;
+}
+
+#addrtx {
+	left: 35%;
+	top: 50%;
+	position: absolute;
+}
+
+#votetx {
+	left: 55%;
+	top: 50%;
+	position: absolute;
+}
+
+#rest {
+	left: 35%;
+	top: 45%;
+	color:white;
+	position: absolute;
+}
+
+#avg {
+	left: 55%;
+	top: 45%;
+	color:white;
+	position: absolute;
+}
+
+#updateRest {
+	width:15%;
+	height: 6.43%;
+	left: 40%;
+	top: 37%;
+	position: absolute;
+}
+
+#updateInfo {
+	width:12%;
+	height: 6.43%;
+	left: 41%;
+	top: 65%;
+	position: absolute;
+}
+
+
+#genericError {
+	position: absolute;
+	left: 25%;
+	top: 16%;
+	color: red;
+}
+
+#notselectedRest {
+	position: absolute;
+	left: 40%;
+	top: 70%;
+	color: red;
+}
+
+#loginError {
+	position: absolute;
+	left: 40%;
+	top: 75%;
+	color: red;
 }
 
 #nomeUtente {

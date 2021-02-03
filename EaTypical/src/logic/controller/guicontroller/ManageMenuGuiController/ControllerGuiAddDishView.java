@@ -7,7 +7,7 @@ package logic.controller.guicontroller.ManageMenuGuiController;
 import logic.controller.guicontroller.OwnerBaseGuiController;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 import logic.engineeringclasses.bean.manageMenu.*;
 import logic.engineeringclasses.others.Session;
@@ -31,13 +31,13 @@ import javafx.scene.control.TextField;
 
 public class ControllerGuiAddDishView extends OwnerBaseGuiController{
 	
-	private ArrayList<String> listaP;
-	private ArrayList<String> listaR;
+	private List<String> listaP;
+	private List<String> listaR;
 	private String username;
 	private int errorePiatto;
 	private BeanErrorDishAlreadyExists beanErrorDishAlreadyExists;
 	
-	public ControllerGuiAddDishView(ArrayList<String> listP, ArrayList<String> listR,String username,int errorePiatto, BeanErrorDishAlreadyExists beanErrorDishAlreadyExists,Session bs) {
+	public ControllerGuiAddDishView(List<String> listP, List<String> listR,String username,int errorePiatto, BeanErrorDishAlreadyExists beanErrorDishAlreadyExists,Session bs) {
     	super(bs);
 		this.listaP = listP;
     	this.listaR = listR;
@@ -143,7 +143,7 @@ public class ControllerGuiAddDishView extends OwnerBaseGuiController{
     		campoMancantePiatto.setText("");
     	}
     	
-    	//verifico se vi ÃƒÂ¨ almeno un campo che non ÃƒÂ¨ stato riempito
+    	//verifico se vi ÃƒÆ’Ã‚Â¨ almeno un campo che non ÃƒÆ’Ã‚Â¨ stato riempito
     	if(count>0) return;
     	
     	//faccio la conversione del prezzo essendo sicuramente diverso da empty string
@@ -152,7 +152,7 @@ public class ControllerGuiAddDishView extends OwnerBaseGuiController{
     	//cambio scena settando i giusti valori
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/ManageRestaurant/ConfirmMessageView.fxml"));
     	BeanAddDish beanAddDish = new BeanAddDish(piatto, ristorante, contenuto, vegano, celiaco, prezzo, 0);
-    	loader.setControllerFactory(c -> {return new ControllerGuiConfirmMessageView(username,beanAddDish,bs);});
+    	loader.setControllerFactory(c -> new ControllerGuiConfirmMessageView(username,beanAddDish,bs));
     	Parent rootParent = loader.load();
     	myAnchorPane.getChildren().setAll(rootParent);
     }
@@ -161,12 +161,7 @@ public class ControllerGuiAddDishView extends OwnerBaseGuiController{
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert myAnchorPane != null : "fx:id=\"myAnchorPane\" was not injected: check your FXML file 'AddDish.fxml'.";
-        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'AddDish.fxml'.";
-        assert sponsorRestaurantButton != null : "fx:id=\"sponsorRestaurantButton\" was not injected: check your FXML file 'AddDish.fxml'.";
-        assert manageMenuButton != null : "fx:id=\"manageMenuButton\" was not injected: check your FXML file 'AddDish.fxml'.";
-        assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'AddDish.fxml'.";
-        assert nomeUtenteLabel != null : "fx:id=\"nomeUtenteLabel\" was not injected: check your FXML file 'AddDish.fxml'.";
+        
         assert scegliPiattoBox != null : "fx:id=\"scegliPiattoBox\" was not injected: check your FXML file 'AddDish.fxml'.";
         assert priceTextField != null : "fx:id=\"priceTextField\" was not injected: check your FXML file 'AddDish.fxml'.";
         assert veganCheckBox != null : "fx:id=\"veganCheckBox\" was not injected: check your FXML file 'AddDish.fxml'.";
@@ -179,12 +174,18 @@ public class ControllerGuiAddDishView extends OwnerBaseGuiController{
         assert campoMancantePrezzo != null : "fx:id=\"campoMancantePrezzo\" was not injected: check your FXML file 'AddDish.fxml'.";
         assert campoMancanteRicetta != null : "fx:id=\"campoMancanteRicetta\" was not injected: check your FXML file 'AddDish.fxml'.";
         assert errorePiattoLabel != null : "fx:id=\"errorePiattoLabel\" was not injected: check your FXML file 'AddDish.fxml'.";
+		assert myAnchorPane != null : "fx:id=\"myAnchorPane\" was not injected: check your FXML file 'AddDish.fxml'.";
+        assert backButton != null : "fx:id=\"backButton\" was not injected: check your FXML file 'AddDish.fxml'.";
+        assert sponsorRestaurantButton != null : "fx:id=\"sponsorRestaurantButton\" was not injected: check your FXML file 'AddDish.fxml'.";
+        assert manageMenuButton != null : "fx:id=\"manageMenuButton\" was not injected: check your FXML file 'AddDish.fxml'.";
+        assert homeButton != null : "fx:id=\"homeButton\" was not injected: check your FXML file 'AddDish.fxml'.";
+        assert nomeUtenteLabel != null : "fx:id=\"nomeUtenteLabel\" was not injected: check your FXML file 'AddDish.fxml'.";
         
-        //carico i piatti che puÃ² scegliere
+        //carico i piatti che puÃƒÂ² scegliere
         for(int i = 0; i<this.listaP.size();i++) {
         	scegliPiattoBox.getItems().add(this.listaP.get(i));
         }
-        //carico i ristoranti che puÃ² scegliere
+        //carico i ristoranti che puÃƒÂ² scegliere
         for(int i = 0; i<this.listaR.size();i++) {
         	scegliRistorante.getItems().add(this.listaR.get(i));
         }

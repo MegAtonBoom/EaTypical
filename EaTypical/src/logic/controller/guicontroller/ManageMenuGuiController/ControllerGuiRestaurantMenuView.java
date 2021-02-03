@@ -92,17 +92,17 @@ public class ControllerGuiRestaurantMenuView  extends OwnerBaseGuiController{
     	
     	//ottengo le ricette che possono essere aggiunte
     	RecipeDAO recipeDAO = new RecipeDAO();
-    	ArrayList<String> obs1 = recipeDAO.selectAllRecipe(); 
+    	ArrayList<String> obs1 = (ArrayList<String>) recipeDAO.selectAllRecipe(); 
 
     	//ottengo i ristoranti dell'utente
     	RestaurantDAO restaurantDAO = new RestaurantDAO();
-    	ArrayList<String> obs2 = restaurantDAO.selectOwnRestaurant("liuk");
+    	ArrayList<String> obs2 = (ArrayList<String>) restaurantDAO.selectOwnRestaurant("liuk");
     	
     	//carico la gerarchia dei nodi
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/ManageRestaurant/AddDish.fxml"));
     	    	
     	//setto il nuovo controller grafico
-    	loader.setControllerFactory(c -> {return new ControllerGuiAddDishView(obs1,obs2,nomeUtenteLabel.getText(),this.errorePiatto,this.beanErrorDishAlreadyExists,bs);});
+    	loader.setControllerFactory(c -> new ControllerGuiAddDishView(obs1,obs2,nomeUtenteLabel.getText(),this.errorePiatto,this.beanErrorDishAlreadyExists,bs));
     	Parent rootParent = loader.load();    	
     	
     	//cambio scena
@@ -111,7 +111,7 @@ public class ControllerGuiRestaurantMenuView  extends OwnerBaseGuiController{
 
     /**
      * ottiene i piatti e le ricette di tutti i ristoranti dell'utente
-     * Li passa al controller grafico della view successiva in cui l'utente potrÃƒÂ  fare la selezione
+     * Li passa al controller grafico della view successiva in cui l'utente potrÃƒÆ’Ã‚Â  fare la selezione
      * @param event
      * @throws IOException
      * @throws ClassNotFoundException
@@ -122,17 +122,16 @@ public class ControllerGuiRestaurantMenuView  extends OwnerBaseGuiController{
     	
     	//ottengo tutte le ricette di tutti i ristoranti dell'utente
     	RecipeDAO recipeDAO = new RecipeDAO();
-    	ArrayList<String> obs1;
-    	obs1 = recipeDAO.selectOwnRecipe(nomeUtenteLabel.getText());
+    	ArrayList<String> obs1 = (ArrayList<String>) recipeDAO.selectOwnRecipe(nomeUtenteLabel.getText());
     	
     	//ottengo tutti i ristoranti dell'utente
-    	ArrayList<String> obs2;   	
+    	  	
     	RestaurantDAO restaurantDAO = new RestaurantDAO();
-    	obs2 = restaurantDAO.selectOwnRestaurant(nomeUtenteLabel.getText());
+    	ArrayList<String> obs2 = (ArrayList<String>) restaurantDAO.selectOwnRestaurant(nomeUtenteLabel.getText());
     	
     	//FXMLLoader e setto il nuovo controller grafico
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/ManageRestaurant/DeleteDishView.fxml"));
-    	loader.setControllerFactory(c -> {return new ControllerGuiDeleteDish(nomeUtenteLabel.getText(),obs1,obs2,this.errorePiatto,this.beanErrorDish,bs);});
+    	loader.setControllerFactory(c -> new ControllerGuiDeleteDish(nomeUtenteLabel.getText(),obs1,obs2,this.errorePiatto,this.beanErrorDish,bs));
     	Parent rootParent = loader.load();    	
     	
     	//cambio scena
@@ -153,7 +152,7 @@ public class ControllerGuiRestaurantMenuView  extends OwnerBaseGuiController{
     	ManageMenu manageMenu = new ManageMenu();
     	BeanAdvice beanAdvices = manageMenu.advice(username);
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/ManageRestaurant/AdviceView.fxml"));    	
-    	loader.setControllerFactory(c -> {return new ControllerGuiAdviceView(username,beanAdvices,bs);});
+    	loader.setControllerFactory(c -> new ControllerGuiAdviceView(username,beanAdvices,bs));
     	Parent rootParent = loader.load();
     	myAnchorPane.getChildren().setAll(rootParent);
     }
@@ -162,7 +161,7 @@ public class ControllerGuiRestaurantMenuView  extends OwnerBaseGuiController{
 
     /**
      * Vengono caricati i ristoranti e i piatti dell'utente per poi passarli
-     * alla view successiva tramite cui l'utente potrÃƒÂ  cancellarli
+     * alla view successiva tramite cui l'utente potrÃƒÆ’Ã‚Â  cancellarli
      * @param event
      * @throws IOException
      * @throws ClassNotFoundException
@@ -175,15 +174,15 @@ public class ControllerGuiRestaurantMenuView  extends OwnerBaseGuiController{
     	RecipeDAO recipeDAO = new RecipeDAO();
     	
     	//ottengo le ricette dei ristoranti del proprietario
-    	ArrayList<String> obs = recipeDAO.selectOwnRecipe(nomeUtenteLabel.getText());
+    	ArrayList<String> obs = (ArrayList<String>) recipeDAO.selectOwnRecipe(nomeUtenteLabel.getText());
     	
     	RestaurantDAO restaurantDAO = new RestaurantDAO();
     	
-    	ArrayList<String> obs2 = restaurantDAO.selectOwnRestaurant(username);
+    	ArrayList<String> obs2 = (ArrayList<String>) restaurantDAO.selectOwnRestaurant(username);
     
     	//FXMLLoader e setto il nuovo controller grafico
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/ManageRestaurant/ModifyDishView.fxml"));
-    	loader.setControllerFactory(c -> {return new ControllerGuiModifyDishView(nomeUtenteLabel.getText(),obs,obs2,this.errorePiatto,this.beanErrorDish,bs);});
+    	loader.setControllerFactory(c -> new ControllerGuiModifyDishView(nomeUtenteLabel.getText(),obs,obs2,this.errorePiatto,this.beanErrorDish,bs));
     	Parent rootParent = loader.load();      	
     	
     	//carica GUI successiva
@@ -204,7 +203,7 @@ public class ControllerGuiRestaurantMenuView  extends OwnerBaseGuiController{
         
         nomeUtenteLabel.setText(this.username);
         
-        //se si ÃƒÂ¨ verificato un errore all'atto dell'inserimento del piatto l'utente viene reindirizzato alla pagina 
+        //se si ÃƒÆ’Ã‚Â¨ verificato un errore all'atto dell'inserimento del piatto l'utente viene reindirizzato alla pagina 
         //per l'inserimento e viene avvisato dell'errore
         if(this.errorePiatto == 0 ) {
         	this.addADish(null);

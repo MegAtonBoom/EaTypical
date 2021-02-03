@@ -1,6 +1,5 @@
 package logic.controller.guicontroller;
 
-import java.text.DateFormat;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,7 +18,6 @@ public abstract class SchedulingBaseGuiController extends UserBaseGuiController 
 	protected String city;
 	protected BeanOutputSchedule[] scheduling;
 	protected ConvertedBeanSchedule[] convertedScheduling;
-	protected boolean thereIsButton;
 	protected String errorMessage="";
 	
 	public SchedulingBaseGuiController(Session bs) {
@@ -66,46 +64,10 @@ public abstract class SchedulingBaseGuiController extends UserBaseGuiController 
         }
         dateColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("strDate"));
         hourColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("strHour"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("name"));
         addressColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("address"));
         avgPriceColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("strAvgPrice"));
         avgVoteColumn.setCellValueFactory(new PropertyValueFactory<ConvertedBeanSchedule, String>("strAvgVote"));
     }  
     
-    protected ConvertedBeanSchedule[] convertDataType(boolean thereIsButton) {
-    	ConvertedBeanSchedule[] convertedBeanSchedule = new ConvertedBeanSchedule[this.scheduling.length];
-
-    	String[] dateAndHour;
-    	String[] restInfo;
-    	String strAvgPrice;
-    	String strAvgVote;
-    	
-    	DateFormat df = DateFormat.getDateInstance(DateFormat.SHORT);
-    	
-    	for(int i=0; i<this.scheduling.length; i++) {	
-    		dateAndHour = new String[2];
-    		dateAndHour[0] = df.format(this.scheduling[i].getDate());
-    		
-    		if(this.scheduling[i].isAtLunch()) dateAndHour[1]="Lunch";
-    		else dateAndHour[1]="Dinner";
-    		
-    		restInfo = new String[4];
-    		restInfo[0] = this.scheduling[i].getRest().getUsernameOwner();
-    		restInfo[1] = this.scheduling[i].getRest().getName();
-    		restInfo[2] = this.scheduling[i].getRest().getAddress();
-    		restInfo[3] = this.city;
-    		
-    		strAvgPrice = Double.toString(this.scheduling[i].getRest().getAvgPrice());
-    		strAvgVote = Double.toString(this.scheduling[i].getRest().getAvgVote());
-    		
-    		if(!thereIsButton) {
-    			convertedBeanSchedule[i] = new ConvertedBeanSchedule(dateAndHour, restInfo, strAvgPrice, strAvgVote);    	
-    		}
-    		else {
-    			convertedBeanSchedule[i] = new ConvertedBeanSchedule(dateAndHour, restInfo, strAvgPrice, strAvgVote, this.scheduling[i].getRest().getName());
-    		}
-    		
-    	}
-    	return convertedBeanSchedule;
-    }
-
 }

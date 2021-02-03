@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class QueryNotifications {
+	
+	private QueryNotifications() {}
 
 	//look for the tourist notification, by username, in the db
 	public static ResultSet touristNotifications(Statement stmt, String user) throws SQLException

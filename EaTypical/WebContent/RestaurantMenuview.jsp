@@ -9,8 +9,10 @@
  <%@page import="logic.engineeringclasses.others.SizedStack" %>
 
 <%
+	//Session sessione = (Session)session.getAttribute("sessione");
+	//System.out.print(sessione.getUser());
 	if(request.getParameter("home5")!=null) {
-		SizedStack.getSizedStack(true).clearStack();
+		
 		%>
 		<jsp:forward page="HomePageOwner.jsp"></jsp:forward>
 		<%
@@ -20,7 +22,7 @@
 
 <%
 	if(request.getParameter("sponsorRestaurant5")!=null) {
-		SizedStack.getSizedStack(true).push("CreatingRestaurantView.jsp");
+		//SizedStack.getSizedStack(true).push("CreatingRestaurantView.jsp");
 		%>
 		<jsp:forward page="CreatingRestaurantView.jsp"></jsp:forward>
 		<%
@@ -38,13 +40,6 @@
 
 <%
 	if(request.getParameter("back5")!=null) {	
-		//SizedStack.getSizedStack(true).pop();
-		String str = SizedStack.getSizedStack(true).pop();
-		
-		
-			%>
-				<jsp:forward page="<%=str%>"></jsp:forward>
-			<%	
 		
 		
 		
@@ -54,7 +49,15 @@
 
 <%
 	if(request.getParameter("delete")!=null) {
-		//SizedStack.getSizedStack(true).push("RestaurantMenuview.jsp");
+		
+		RestaurantDAO restaurantDAO = new RestaurantDAO();		
+		ArrayList<String> obs2 = (ArrayList<String>)restaurantDAO.selectOwnRestaurant("liuk");
+		//setto i ristoranti
+		request.setAttribute("listaRistoranti", obs2);
+		RecipeDAO recipeDAO = new RecipeDAO();
+		//setto le ricette
+		ArrayList<String> obs1 = (ArrayList<String>)recipeDAO.selectOwnRecipe("liuk");
+		request.setAttribute("listaPiatti", obs1);
 		%>
 		<jsp:forward page="DeleteDishView.jsp"></jsp:forward>
 		<%
@@ -65,12 +68,12 @@
 	if(request.getParameter("add")!=null) {
 		
 		RestaurantDAO restaurantDAO = new RestaurantDAO();		
-		ArrayList<String> obs2 = restaurantDAO.selectOwnRestaurant("liuk");
+		ArrayList<String> obs2 = (ArrayList<String>)restaurantDAO.selectOwnRestaurant("liuk");
 		//setto i ristoranti
 		request.setAttribute("listaRistoranti", obs2);
 		RecipeDAO recipeDAO = new RecipeDAO();
 		//setto le ricette
-		ArrayList<String> obs1 = recipeDAO.selectOwnRecipe("liuk");
+		ArrayList<String> obs1 = (ArrayList<String>)recipeDAO.selectOwnRecipe("liuk");
 		request.setAttribute("listaPiatti", obs1);
 		
 		%>
@@ -82,7 +85,15 @@
 
 <%
 	if(request.getParameter("modify")!=null) {
-		//SizedStack.getSizedStack(true).push("ConfirmMessage.jsp");
+		
+		RestaurantDAO restaurantDAO = new RestaurantDAO();		
+		ArrayList<String> obs2 = (ArrayList<String>)restaurantDAO.selectOwnRestaurant("liuk");
+		//setto i ristoranti
+		request.setAttribute("listaRistoranti", obs2);
+		RecipeDAO recipeDAO = new RecipeDAO();
+		//setto le ricette
+		ArrayList<String> obs1 = (ArrayList<String>)recipeDAO.selectOwnRecipe("liuk");
+		request.setAttribute("listaPiatti", obs1);
 		%>
 		<jsp:forward page="ModifyDishView.jsp"></jsp:forward>
 		<%
@@ -99,7 +110,7 @@
     
     
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <link rel="stylesheet" type="text/css" href="styleRestaurantMenuView.css">
 <meta charset="ISO-8859-1">

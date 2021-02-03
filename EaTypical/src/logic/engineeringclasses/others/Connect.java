@@ -5,9 +5,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Connect {
-	
+	String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase4?user=root&password=Monte_2020.&serverTimezone=UTC";
 	//private String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Kp*d.!>3&serverTimezone=UTC";
-	private String connectionString = "jdbc:mysql://localhost:3308/progettoispwfinaledatabase?user=root&password=password.!>3&serverTimezone=UTC";
+	//private String connectionString = "jdbc:mysql://localhost:3308/progettoispwfinaledatabase?user=root&password=password.!>3&serverTimezone=UTC";
 	String a="jdbc:mysql://localhost:3308/progettoispwfinaledatabase?";
 	String b="user=root&password=password";
 	private static Connect instance=null;
@@ -24,10 +24,11 @@ public class Connect {
 	
 	public Connection getDBConnection() throws SQLException {
 		if(this.conn==null) {
-			//this.conn = DriverManager.getConnection(this.connectionString);
-			this.conn=DriverManager.getConnection(a+b);
+			this.conn = DriverManager.getConnection(this.connectionString);
+			//this.conn=DriverManager.getConnection(a+b);
 		}
 		return this.conn;
 	}
 
 }
+

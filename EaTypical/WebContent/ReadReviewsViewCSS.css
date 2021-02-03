@@ -50,19 +50,36 @@ body {
 }
 
 #saveFavourite {
-	width:24.5%;
+	width:22.5%;
 	height: 6.43%;
 	left: 4.29%;
-	top: 80.4%;
+	top: 80%;
 	position: absolute;
 }
 
 
-#writeReview{
-	width: 70%;
-	top:32.2%;
-	left:8.50%;
+
+
+#readReviews{
+	width:70%;
+	top:30%;
+	left:15%;
 	position: absolute;
+}
+
+#genericError {
+	position: absolute;
+	left: 20%;
+	top: 20%;
+	color: red;
+	font-size: 20px;
+}
+#ristName {
+	position: absolute;
+	left: 50%;
+	top: 20%;
+	color: white;
+	font-size: 25px;
 }
 #nomeUtente {
 	position: absolute;

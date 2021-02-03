@@ -2,37 +2,68 @@
     pageEncoding="ISO-8859-1"%>
     
 <%@page import="logic.engineeringclasses.others.SizedStack" %>
+<%@page import="logic.engineeringclasses.others.Session" %>
+<%@page import="java.text.ParseException" %>
+<%@page import="logic.engineeringclasses.others.BeanConverter" %>
+
+<%
+Session bs;
+if( session.getAttribute("session")==null) 
+{
+bs=new Session(true);
+}
+else{
+bs=(Session)session.getAttribute("session");
+} %>
+
 
 <%    	
-    	if(request.getParameter("Logout")!=null) {
-    		System.out.println("To do - Logout");
+    	if(request.getParameter("Logout")!=null) {   		
+    		session.setAttribute("session", bs);
 %>
+			
 			<jsp:forward page="HomePageTouristView.jsp"/>
 <%
     	}
+		if(request.getParameter("See Notifications")!=null) {
+			session.setAttribute("session", bs);
+%>
+			<jsp:forward page="HomePageTouristView.jsp"/>
+<%
+		}
     	if(request.getParameter("Schedule Trip HT")!=null) {
-    		SizedStack.getSizedStack(true).push("ItalianViewCity.jsp");
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="ItalianViewCity.jsp"/>
 <%
     	}
     	if(request.getParameter("Choose Restaurant HT")!=null) {
-    		SizedStack.getSizedStack(true).push("ItalianViewCity2.jsp");
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="ItalianViewCity2.jsp"/>
 <%
     	}
     	if(request.getParameter("See Your Favourite Restaurants")!=null) {
-    		System.out.println("To do - See Your Favourite Restaurants");
+    		session.setAttribute("session", bs);
 %>
 			<jsp:forward page="HomePageTouristView.jsp"/>
 <%
     	}
     	if(request.getParameter("See Your Trip")!=null) {
-    		System.out.println("To do - See Your Trip");
+    		try {
+    			BeanConverter converter = new BeanConverter();
+    			
+    			session.setAttribute("city", converter.getCityFromScheduling(bs.getUser()));
+    			session.setAttribute("scheduling", converter.convertScheduling(bs.getUser()));
+    			session.setAttribute("session", bs);
 %>
-			<jsp:forward page="HomePageTouristView.jsp"/>
+				<jsp:forward page="SeeTripView.jsp"/>
 <%
+    		}
+    		catch(ParseException e) {
+    			// To do
+    				e.printStackTrace();
+    		}
     	}
 %>    
     
@@ -49,9 +80,11 @@
 
 <body>
 <div class="container">
+
+	
 	<form action="HomePageTouristView.jsp" name="myform" method="get">
 		<img id="fotoUtente" src="utente.jpg" alt="Photo"/>
-		<label id="nomeUtente">nomeUtente</label>
+		<label id="nomeUtente"><%=bs.getUser().getUsername()%></label>
 		<div class="box">
 			<p>Hi!</p>
 		</div>
@@ -60,6 +93,7 @@
 		<input id="seeFavRestaurants" class="button" type="submit" name="See Your Favourite Restaurants" value="See Your Favourite Restaurants">
 		<input id="seeTrip" class="button" type="submit" name="See Your Trip" value="See Your Trip">
 		<input id="logout" class="button" type="submit" name="Logout" value="Logout">
+		<input id="seeNotifications" class="button" type="submit" name="See Notifications" value="See Notifications">
 	</form>
 </div>
 </body>

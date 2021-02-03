@@ -16,7 +16,7 @@ public class ScheduleTripAdapter implements ChooseSpecificRestaurants{
 		this.st=st;
 	}
 	
-	public List<Restaurant> findallRestaurants(String city)
+	public List<Restaurant> findallRestaurants(String city) throws ClassNotFoundException, NoResultException, SQLException
 	{
 		return this.st.callDAO(city,false,false);
 	}
@@ -26,12 +26,12 @@ public class ScheduleTripAdapter implements ChooseSpecificRestaurants{
 		return this.st.callDAO(city,false,true);
 	}
 	
-	public List<Restaurant> findVeganRestaurants(String city)
+	public List<Restaurant> findVeganRestaurants(String city) throws ClassNotFoundException, NoResultException, SQLException
 	{
 		return this.st.callDAO(city,true,false);
 	}
 	
-	public List<Restaurant> findBothRestaurants(String city)
+	public List<Restaurant> findBothRestaurants(String city) throws ClassNotFoundException, NoResultException, SQLException
 	{
 		return this.st.callDAO(city,true,true);
 	}

@@ -4,6 +4,7 @@
 
 package logic.controller.guicontroller.ManageMenuGuiController;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -11,11 +12,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import logic.controller.guicontroller.ControllerGuiHomePageOwner;
 import logic.controller.guicontroller.OwnerBaseGuiController;
 import logic.engineeringclasses.bean.manageMenu.BeanListNotificationsScheduling;
 import logic.engineeringclasses.bean.manageMenu.BeanSchedulingNotification;
@@ -74,8 +78,16 @@ public class ControllerGuiNotificationsView extends OwnerBaseGuiController {
     private TableColumn<BeanSchedulingNotification, String> momentoGiornataColonna; // Value injected by FXMLLoader
 
     @FXML
-	public void goToHome(ActionEvent event) {
+	public void goToHome(ActionEvent event) throws IOException {
+    	//carico la gerarchia dei nodi
+  	   FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/HomePageOwnerView.fxml"));
+    	    	
+  	   //setto il nuovo controller grafico
+  	   loader.setControllerFactory(c ->  new ControllerGuiHomePageOwner(bs));
+  	   Parent rootParent = loader.load();    	
     	
+    	//cambio scena
+    	myAnchorPane.getChildren().setAll(rootParent);
     }
 
     
@@ -103,7 +115,6 @@ public class ControllerGuiNotificationsView extends OwnerBaseGuiController {
         for(int i = 0; i<beanListNotificationsScheduling.getNotifications().size();i++) {
         	observableList.add(beanListNotificationsScheduling.getNotifications().get(i));        	
         }
-        System.out.print(username);
         nomeUtente.setText(username);
         tabellaNotifiche.setItems(observableList);
     }

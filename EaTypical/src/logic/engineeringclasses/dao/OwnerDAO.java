@@ -1,44 +1,38 @@
 package logic.engineeringclasses.dao;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
 import logic.engineeringclasses.exceptions.AlreadyInUseUsernameException;
 import logic.engineeringclasses.exceptions.LoginDBException;
 import logic.engineeringclasses.others.Connect;
 import logic.engineeringclasses.query.QueryLogin;
-import logic.engineeringclasses.query.QueryNotifications;
 import logic.model.Owner;
-import logic.model.OwnerReviewNotification;
-import logic.model.OwnerSchedulingNotification;
-import logic.model.Restaurant;
-import logic.model.Review;
 import logic.model.User;
 
 public class OwnerDAO {
+	
+	private OwnerDAO() {}
     
-    //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Monte_2020.&serverTimezone=UTC";
+    private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase4?user=root&password=Monte_2020.&serverTimezone=UTC";
+    //private static String connectionString = "jdbc:mysql://localhost:3306/progettoispwfinaledatabase?user=root&password=Kp*d.!>3&serverTimezone=UTC";
 
     public static User selectOwner(String user, String pw) throws ClassNotFoundException, SQLException, LoginDBException 
     {
     	String driverClassName = "com.mysql.jdbc.Driver";
         Statement stmt = null;
         Connection conn = null;
-        List<OwnerReviewNotification> ownerRev= new ArrayList<OwnerReviewNotification>();
-        List<OwnerSchedulingNotification> ownerSched = new ArrayList<OwnerSchedulingNotification>();
         User owner;
         String name;
         String surname;
         String username;
-        List<Restaurant> restaurants;
-        System.out.println("Dragon Ball");
         try {
             Class.forName(driverClassName);
-			conn = Connect.getInstance().getDBConnection();
+			//conn = Connect.getInstance().getDBConnection();
+            conn = DriverManager.getConnection(connectionString);
             stmt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,
                     ResultSet.CONCUR_READ_ONLY);
             
@@ -51,39 +45,16 @@ public class OwnerDAO {
             name=rs.getString("Nome");
             surname=rs.getString("Cognome");
             username=rs.getString("Username");   
-            restaurants= OwnerRestaurantsDAO.findYourRestaurant(username);
-            for(Restaurant rest: restaurants) {		//for each owner restaurant
-            	rs=QueryNotifications.ownerReviewNotifications(stmt, rest.getName());		//get notifications about new reviews
-            	if(rs.first())
-            	{
-            		do {
-            			Review review=findSpecificReview(rest.getName(), rs.getString("UsernameTurista"));
-            			String touristUsername=rs.getString("UsernameTurista");
-            			OwnerReviewNotification orn=new OwnerReviewNotification(touristUsername,review,rest);
-            			ownerRev.add(orn);
-            		}while(rs.next());				//put the notifications in a list
-            		rs.first();
-            		
-            	}
-            	List<OwnerSchedulingNotification> ownerSpecificSched= NotificationsDAO.findOwnerNotifications(rest);	//get notifications about new schedules in your restaurant
-            	ownerSched.addAll(ownerSpecificSched);    //put them in the list       	
-            }
-            rs.close();
+        
         	} finally {	      	
                 if (stmt != null)
                     stmt.close();
-        	}                 
-        owner = new Owner(name, surname, restaurants, username, ownerRev, ownerSched); //use the factory to return a owner object
-        System.out.println("Dragon Ball");
+        	}         
+        owner = new Owner(name, surname, username); //use the factory to return a owner object
         return owner;
     }
     
     
-    //find the review of specific user, for a specific restaurant
-    private static Review findSpecificReview(String restName, String username) throws ClassNotFoundException, SQLException
-    {
-    	return ReviewsDAO.findRestaurantReviews(restName,username);
-    }
 
     
     //insert a user owner in the db

@@ -1,14 +1,21 @@
+<%@page import="logic.engineeringclasses.exceptions.InvalidDishDelete"%>
+<%@page import="logic.engineeringclasses.bean.manageMenu.BeanDeleteDish"%>
+<%@page import="logic.engineeringclasses.exceptions.InvalidDishModify"%>
+<%@page import="logic.engineeringclasses.exceptions.DishAlreadyExists"%>
+<%@page import="logic.controller.applicationcontroller.ManageMenu"%>
+<%@page import="logic.engineeringclasses.bean.manageMenu.BeanDishWeb"%>
+<%@page import="com.mysql.cj.Session.SessionEventListener"%>
+<%@page import="logic.engineeringclasses.bean.manageMenu.BeanAddDish"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
     
 
-<%request.setAttribute("piatto",request.getAttribute("piatto")); %>
  
  <%@page import="logic.engineeringclasses.others.SizedStack" %>
 
 <%
 	if(request.getParameter("home3")!=null) {
-		SizedStack.getSizedStack(true).clearStack();
+		//SizedStack.getSizedStack(true).clearStack();
 		%>
 		<jsp:forward page="HomePageOwner.jsp"></jsp:forward>
 		<%
@@ -17,7 +24,7 @@
 
 <%
 	if(request.getParameter("manageMenu3")!=null) {
-		SizedStack.getSizedStack(true).push("RestaurantMenuview.jsp");
+		//SizedStack.getSizedStack(true).push("RestaurantMenuview.jsp");
 		%>
 		<jsp:forward page="RestaurantMenuview.jsp"></jsp:forward>
 		<%
@@ -26,7 +33,7 @@
 
 <%
 	if(request.getParameter("sponsorRestaurant3")!=null) {
-		SizedStack.getSizedStack(true).push("CreatingRestaurantView.jsp");
+		//SizedStack.getSizedStack(true).push("CreatingRestaurantView.jsp");
 		%>
 		<jsp:forward page="CreatingRestaurantView.jsp"></jsp:forward>
 		<%
@@ -53,7 +60,34 @@
 
 <%
 	if(request.getParameter("Done")!=null) {
-		//SizedStack.getSizedStack(true).push("RestaurantMenuview.jsp");
+		ManageMenu m = new ManageMenu();
+		BeanDishWeb b = (BeanDishWeb)session.getAttribute("beanrefresh");
+		System.out.print(b.getTipoModifica());
+		if(b.getTipoModifica() == 0){
+			BeanAddDish beanAddDish = new BeanAddDish(b.getPiatto(),b.getRistorante(),b.getContenuto(),b.isVegano(),b.isCeliaco(),b.getPrezzo(),0);
+			
+			try{
+				m.addDish(beanAddDish);
+			}catch(DishAlreadyExists e){
+				System.out.print("Gia esiste\n");
+			}
+		}else if(b.getTipoModifica() == 1){
+			BeanAddDish beanAddDish = new BeanAddDish(b.getPiatto(),b.getRistorante(),b.getContenuto(),b.isVegano(),b.isCeliaco(),b.getPrezzo(),1);
+			System.out.println(b.getPiatto()+b.getContenuto()+b.getRistorante());
+			try{
+				m.modifyDishes(beanAddDish);
+			}catch(InvalidDishModify e2){
+				System.out.print("Non esiste\n");
+			}
+		}else if(b.getTipoModifica() == 2){
+			BeanDeleteDish beanDeleteDish = new BeanDeleteDish(b.getRistorante(),b.getPiatto(),2);
+			
+			try{
+				m.deleteDish(beanDeleteDish);
+			}catch(InvalidDishDelete e3){
+				System.out.println("Non esiste da eliminare");
+			}
+		}
 		%>
 		<jsp:forward page="RestaurantMenuview.jsp"></jsp:forward>
 		<%
@@ -70,7 +104,7 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Home page tourist</title>
@@ -90,17 +124,12 @@
 		<input id="sponsorRestaurant" type="submit" name="sponsorRestaurant3" value="Sponsor Restaurant">
 		<input id="back" type="submit" name="back3" value="Back">
 			
-		<img id="fotoUtente" src="utente.jpg"/>
+		<img id="fotoUtente" alt="fotoUtente" src="utente.jpg"/>
 		
 		<label id="nomeUtente">nomeUtente</label>
 <%
-String ristorante = (String)request.getParameter("ristorante");
-String ricetta = (String)request.getParameter("ricetta");
-String piatto = (String)request.getParameter("piatto");
-String vegano=(String)request.getParameter("vegano");
-String celiaco=(String)request.getParameter("celiaco");
-String prezzo=(String)request.getParameter("prezzo");
-out.print(ristorante+piatto+ricetta+prezzo+vegano+celiaco);
+session.setAttribute("beanrefresh", request.getAttribute("bean"));
+
 %>
 		<div id="informazioni">
 			<p>What would you like to do?</p>

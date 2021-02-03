@@ -65,56 +65,13 @@ body {
 	position: absolute;
 }
 
-#one{
-	top: 32%;
-	left: 31%;
-	position:absolute;
+#voteScroll{
+	top:25%;
+	left:45%;
+	position: absolute;
 }
-#onel{
-	top: 32%;
-	left: 33%;
-	position:absolute;
-}
-#two{
-	top: 25%;
-	left: 39%;
-	position:absolute;
-}
-#twol{
-	top: 25%;
-	left: 41%;
-	position:absolute;
-}
-#three{
-	top: 32%;
-	left: 47%;
-	position:absolute;
-}
-#threel{
-	top: 32%;
-	left: 49%;
-	position:absolute;
-}
-#four{
-	top: 25%;
-	left: 55%;
-	position:absolute;
-}
-#fourl{
-	top: 25%;
-	left: 57%;
-	position:absolute;
-}
-#five{
-	top: 32%;
-	left: 63%;
-	position:absolute;
-}
-#fivel{
-	top: 32%;
-	left: 65%;
-	position:absolute;
-}
+
+
 .ratingl{
 	color:white;
 }
@@ -125,6 +82,27 @@ body {
 	left:14.50%;
 	position: absolute;
 }
+
+#genericError {
+	position: absolute;
+	left: 20%;
+	top: 16%;
+	color: red;
+}
+
+#emptyReview {
+	position: absolute;
+	left: 20%;
+	top: 22%;
+	color: red;
+}
+#successLabel {
+	position: absolute;
+	left: 50%;
+	top: 83.4%;
+	color: green;
+}
+
 #nomeUtente {
 	position: absolute;
 	left: 85.43%;

@@ -54,7 +54,7 @@ public class ControllerGuiAdviceView  extends OwnerBaseGuiController{
     void done(ActionEvent event) throws IOException {
     	//carico la gerarchia dei nodi
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/logic/view/standalone/ManageRestaurant/RestaurantMenuView.fxml"));    	
-    	loader.setControllerFactory(c -> {return new ControllerGuiRestaurantMenuView(username,bs);});
+    	loader.setControllerFactory(c -> new ControllerGuiRestaurantMenuView(username,bs));
     	Parent rootParent = loader.load();
     	//cambio scena
     	myAnchorPane.getChildren().setAll(rootParent);
@@ -73,11 +73,14 @@ public class ControllerGuiAdviceView  extends OwnerBaseGuiController{
         assert doneButton != null : "fx:id=\"doneButton\" was not injected: check your FXML file 'AdviceView.fxml'.";
         assert area != null : "fx:id=\"area\" was not injected: check your FXML file 'AdviceView.fxml'.";
         assert labelUtente != null : "fx:id=\"labelUtente\" was not injected: check your FXML file 'AdviceView.fxml'.";
-        String linea = "Possibili piatti tipici da poter aggiungere ai menu dei tuoi ristoranti:";
-        labelUtente.setText(username);
-        for(int i=0;i<beanAdvice.getPiattiMancanti().size();i++) {
-        	linea = linea +  "\nPiatto " + i + ": " + beanAdvice.getPiattiMancanti().get(i);
+        
+        StringBuilder bld = new StringBuilder();
+        bld.append("Possibili piatti tipici da poter aggiungere ai menu dei tuoi ristoranti:");
+        for(int i = 0; i < beanAdvice.getPiattiMancanti().size();i++) {        	
+        	bld.append("\nPiatto " + i + ": " + beanAdvice.getPiattiMancanti().get(i));
         }
-        area.setText(linea);        
+        labelUtente.setText(username);
+        
+        area.setText(bld.toString());        
     }
 }

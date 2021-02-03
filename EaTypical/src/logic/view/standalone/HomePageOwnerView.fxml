@@ -14,17 +14,17 @@
             <Image url="@restaurant-mural-wallpaper_23-2148707022.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="backButton" layoutX="212.0" layoutY="510.0" mnemonicParsing="false" onAction="#goToBackPage" prefHeight="76.0" prefWidth="280.0" text="Logout">
+      <Button fx:id="backButton" layoutX="170.0" layoutY="562.0" mnemonicParsing="false" onAction="#goToBackPage" prefHeight="76.0" prefWidth="360.0" text="Logout">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="sponsorRestaurantButton" layoutX="210.0" layoutY="401.0" mnemonicParsing="false" onAction="#goToSponsorRestaurant" prefHeight="76.0" prefWidth="280.0" text="Sponsor Restaurant">
+      <Button fx:id="sponsorRestaurantButton" layoutX="170.0" layoutY="458.0" mnemonicParsing="false" onAction="#goToSponsorRestaurant" prefHeight="76.0" prefWidth="360.0" text="Sponsor Restaurant">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
       </Button>
-      <Button fx:id="manageMenuButton" layoutX="212.0" layoutY="185.0" mnemonicParsing="false" onAction="#goToManageMenu" prefHeight="76.0" prefWidth="280.0" text="Manage Menu">
+      <Button fx:id="manageMenuButton" layoutX="172.0" layoutY="154.0" mnemonicParsing="false" onAction="#goToManageMenu" prefHeight="76.0" prefWidth="360.0" text="Manage Menu">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -44,7 +44,12 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <Button fx:id="bottoneNotifiche" layoutX="212.0" layoutY="292.0" mnemonicParsing="false" onAction="#goToNotificationsView" prefHeight="76.0" prefWidth="280.0" text="See Notifications">
+      <Button fx:id="bottoneNotifiche" layoutX="170.0" layoutY="252.0" mnemonicParsing="false" onAction="#goToNotificationsView" prefHeight="76.0" prefWidth="360.0" text="See Scheduling Notifications">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="bottoneNotificheRecensione" layoutX="170.0" layoutY="356.0" mnemonicParsing="false" onAction="#goToReviewNotificationsView" prefHeight="76.0" prefWidth="360.0" text="See Reviews Notifications">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
